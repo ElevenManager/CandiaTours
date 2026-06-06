@@ -930,6 +930,134 @@
       border-radius: 18px;
       padding: 14px 16px;
     }
+
+    /* Responsive refinements for touch devices and narrow screens. */
+    body { overflow-x: clip; }
+    .topbar-inner,
+    .nav,
+    .hero-content,
+    .day-content,
+    .day-top > div,
+    .info-card,
+    .mini {
+      min-width: 0;
+    }
+    h1, h2, h3, p, li, td { overflow-wrap: anywhere; }
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+
+    @media (max-width: 900px) {
+      .topbar-inner { gap: 12px; }
+      .brand { width: 100%; }
+      .nav {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
+        padding: 0 0 4px;
+      }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      section { padding: 26px 0; }
+      .topbar-inner { padding: 10px 0; gap: 10px; }
+      .brand { gap: 10px; font-size: .95rem; }
+      .brand-mark { width: 40px; height: 40px; border-radius: 13px; flex: 0 0 auto; }
+      .brand small { font-size: .78rem; }
+      .nav {
+        gap: 7px;
+        margin-inline: -10px;
+        width: calc(100% + 20px);
+        padding-inline: 10px;
+      }
+      .nav a, .btn { padding: 9px 13px; font-size: .86rem; }
+
+      .hero { padding: 14px 0 18px; }
+      .hero-card { border-radius: 18px; min-height: 0; }
+      .hero-card, .hero-content { min-height: 500px; }
+      .hero-content { padding: 24px 18px; }
+      .eyebrow {
+        max-width: 100%;
+        border-radius: 14px;
+        padding: 7px 10px;
+        font-size: .82rem;
+        line-height: 1.35;
+      }
+      h1 { font-size: clamp(2rem, 11vw, 3.25rem); line-height: 1; letter-spacing: -.04em; }
+      h2 { font-size: clamp(1.65rem, 8vw, 2.35rem); letter-spacing: -.03em; }
+      .hero-content p { font-size: .98rem; line-height: 1.55; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; gap: 9px; width: 100%; margin-top: 20px; }
+      .hero-actions .btn { width: 100%; min-height: 46px; display: grid; place-items: center; text-align: center; }
+
+      .stats { gap: 10px; margin: 18px 0 28px; }
+      .stat, .info-card { border-radius: 16px; padding: 16px; }
+      .note, .warning { border-radius: 14px; padding: 15px 16px; }
+      .timeline { gap: 14px; }
+      .day-card { border-radius: 16px; }
+      .day-img { min-height: 190px; }
+      .day-content { padding: 18px 16px; }
+      .day-top { gap: 10px; }
+      .day-top h3 { font-size: 1.3rem; }
+      .mini-grid { gap: 8px; }
+      .mini { border-radius: 12px; padding: 11px; }
+      .route-list { gap: 7px; }
+      .cards { gap: 12px; }
+
+      .ticket-table { overflow: visible; border: 0; background: transparent; box-shadow: none; }
+      tbody { display: grid; gap: 12px; }
+      tr {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 250, 242, .94);
+      }
+      td { padding: 12px 14px; }
+      td + td { border-top: 1px solid rgba(45, 35, 27, .08); }
+      .gallery { gap: 10px; }
+      .gallery figure, .gallery figure:first-child { height: 210px; border-radius: 16px; }
+
+      .floating-print {
+        position: static;
+        display: block;
+        width: calc(100% - 20px);
+        margin: 0 10px max(10px, env(safe-area-inset-bottom));
+        min-height: 48px;
+        text-align: center;
+      }
+      body.locked .auth-overlay {
+        overflow-y: auto;
+        align-items: start;
+        padding: max(16px, env(safe-area-inset-top)) 0 max(16px, env(safe-area-inset-bottom));
+      }
+      .auth-box { width: calc(100% - 20px); margin: auto; border-radius: 18px; padding: 24px 18px; }
+      .auth-box .setup-result code { font-size: .68rem; }
+    }
+
+    @media (max-width: 380px) {
+      .page, .topbar-inner { width: calc(100% - 16px); }
+      .nav { margin-inline: -8px; width: calc(100% + 16px); padding-inline: 8px; }
+      .hero-card, .hero-content { min-height: 470px; }
+      .hero-content { padding: 20px 14px; }
+      .day-img { min-height: 170px; }
+    }
+
+    @media (pointer: coarse) {
+      .nav a, .btn, .btn-auth, .floating-print { min-height: 44px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
 </style>
 <script>
     window.makeImageFallback = function(title = "Valle Sagrado", subtitle = "Cusco • Perú") {
