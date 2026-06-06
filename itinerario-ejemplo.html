@@ -132,6 +132,7 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
+    .menu-toggle { display: none; }
 
     .nav a,
     .btn {
@@ -947,38 +948,58 @@
     p, li { text-wrap: pretty; }
 
     @media (max-width: 900px) {
-      .topbar-inner { gap: 12px; }
-      .brand { width: 100%; }
-      .nav {
-        width: 100%;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overscroll-behavior-inline: contain;
-        scrollbar-width: none;
-        padding: 0 0 4px;
-      }
-      .nav::-webkit-scrollbar { display: none; }
-      .nav a {
-        flex: 0 0 auto;
-        min-height: 44px;
+      .topbar-inner { gap: 12px; position: relative; }
+      .brand { min-width: 0; }
+      .menu-toggle {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 44px;
+        margin-left: auto;
+        padding: 9px 13px;
+        border: 1px solid rgba(45, 35, 27, .14);
+        border-radius: 999px;
+        background: var(--green-dark);
+        color: white;
+        font: inherit;
+        font-size: .86rem;
+        font-weight: 850;
+        cursor: pointer;
+      }
+      .nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        z-index: 70;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(255, 250, 242, .98);
+        box-shadow: 0 12px 28px rgba(45, 35, 27, .14);
+      }
+      .nav.is-open { display: grid; grid-template-columns: 1fr; gap: 6px; }
+      .nav a {
+        width: 100%;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border-radius: 11px;
+        background: white;
       }
     }
 
     @media (max-width: 620px) {
       body { font-size: 16px; }
       section { padding: 26px 0; }
-      .topbar-inner { padding: 10px 0; gap: 10px; }
+      .topbar-inner { min-height: 64px; padding: 10px 0; gap: 10px; flex-direction: row; align-items: center; }
       .brand { gap: 10px; font-size: .95rem; }
       .brand-mark { width: 40px; height: 40px; border-radius: 13px; flex: 0 0 auto; }
       .brand small { font-size: .78rem; }
-      .nav {
-        gap: 7px;
-        margin-inline: -10px;
-        width: calc(100% + 20px);
-        padding-inline: 10px;
-      }
       .nav a, .btn { padding: 9px 13px; font-size: .86rem; }
 
       .hero { padding: 14px 0 18px; }
@@ -1044,7 +1065,6 @@
 
     @media (max-width: 380px) {
       .page, .topbar-inner { width: calc(100% - 16px); }
-      .nav { margin-inline: -8px; width: calc(100% + 16px); padding-inline: 8px; }
       .hero-card, .hero-content { min-height: 470px; }
       .hero-content { padding: 20px 14px; }
       .day-img { min-height: 170px; }
@@ -1116,7 +1136,8 @@
           <small>Itinerario personalizado</small>
 </div>
 </a>
-<nav class="nav">
+<button aria-controls="siteNav" aria-expanded="false" class="menu-toggle" type="button">Menú <span aria-hidden="true">☰</span></button>
+<nav class="nav" id="siteNav">
 <a href="index.html">← Inicio</a>
 <a href="#resumen">Resumen</a>
 <a href="#itinerario">Itinerario</a>
@@ -1814,6 +1835,20 @@ Este es un itinerario de muestra. Tu plan real se diseñará a tu medida con tus
       input.addEventListener("keydown", function(e) { if (e.key === "Enter") btn.click(); });
       input.focus();
     })();
+    var menuToggle = document.querySelector(".menu-toggle");
+    var siteNav = document.querySelector(".nav");
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener("click", function() {
+        var open = siteNav.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", String(open));
+      });
+      siteNav.addEventListener("click", function(event) {
+        if (event.target.closest("a")) {
+          siteNav.classList.remove("is-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
   </script>
 </body>
 </html>
