@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generar clave segura — Candia Tours</title>
+<style>
+  :root {
+    --bg: #f7f1e8;
+    --ink: #2d231b;
+    --muted: #6d5d4e;
+    --gold: #c8923b;
+    --green-dark: #284633;
+    --terracotta: #b85f3d;
+    --line: rgba(45,35,27,.14);
+    --radius: 26px;
+    --shadow: 0 18px 45px rgba(54,36,18,.16);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at top left, rgba(200,146,59,.22), transparent 34%),
+                radial-gradient(circle at 80% 20%, rgba(66,107,79,.18), transparent 30%),
+                linear-gradient(180deg, #fbf6ed 0%, var(--bg) 50%, #efe4d4 100%);
+    color: var(--ink);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+  }
+  .container {
+    background: rgba(255,250,242,.96);
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    padding: clamp(28px,4vw,48px);
+    box-shadow: var(--shadow);
+    max-width: 620px;
+    width: 100%;
+  }
+  h1 {
+    color: var(--green-dark);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: -.5px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .sub {
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: .92rem;
+  }
+  label {
+    display: block;
+    font-weight: 750;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+    font-size: .9rem;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font-size: .95rem;
+    font-family: inherit;
+    background: white;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .3s;
+    margin-bottom: 18px;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200,146,59,.18);
+  }
+  textarea { resize: vertical; min-height: 40px; font-family: "Consolas","Courier New",monospace; font-size: .82rem; word-break: break-all; }
+  button {
+    width: 100%;
+    padding: 14px;
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform .3s, background .3s;
+  }
+  button:hover { transform: translateY(-2px); background: #1f3929; }
+  button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .result {
+    display: none;
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(66,107,79,.08);
+    border: 1px solid rgba(66,107,79,.18);
+    border-radius: 20px;
+  }
+  .result h3 { color: var(--green-dark); font-size: 1rem; margin-bottom: 10px; }
+  .result code {
+    display: block;
+    background: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-family: "Consolas","Courier New",monospace;
+    font-size: .78rem;
+    word-break: break-all;
+    color: var(--ink);
+    margin-bottom: 8px;
+    border: 1px solid var(--line);
+  }
+  .result .label { font-weight: 850; color: var(--green-dark); font-size: .8rem; margin-bottom: 2px; }
+  .warning {
+    background: rgba(184,95,61,.10);
+    border-left: 4px solid var(--terracotta);
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #6f321f;
+    font-weight: 700;
+    font-size: .86rem;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+  .info {
+    background: rgba(57,92,120,.08);
+    border: 1px solid rgba(57,92,120,.16);
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #395c78;
+    font-size: .86rem;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .step {
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    margin-bottom: 8px;
+    font-size: .88rem;
+    color: var(--muted);
+  }
+  .step strong {
+    background: var(--green-dark);
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: .75rem;
+    flex-shrink: 0;
+  }
+  .strength { font-size: .82rem; margin-top: -12px; margin-bottom: 12px; }
+  .strength.weak { color: var(--terracotta); }
+  .strength.medium { color: var(--gold); }
+  .strength.strong { color: var(--green-dark); }
+  .btn-copy {
+    font-size: .8rem;
+    padding: 6px 14px;
+    margin-left: 8px;
+    background: var(--gold);
+    color: #21160e;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Generador de clave segura</h1>
+<p class="sub">Herramienta interna de Candia Tours. Genera un hash PBKDF2 irrompible para proteger los itinerarios.</p>
+
+<label for="password">Elige una contraseña fuerte (mínimo 16 caracteres, mezcla letras, números y símbolos):</label>
+<input type="password" id="password" placeholder="Ej: C4nd1a-Tours_2026-S3gur0!" autocomplete="off"/>
+<div class="strength" id="strength"></div>
+
+<button id="generateBtn" disabled>Generar hash seguro</button>
+
+<div class="result" id="result">
+<h3>Valores para pegar en index.html</h3>
+<p class="label">STORED_HASH (copia todo):</p>
+<code id="hashDisplay"></code>
+<p class="label">SALT (copia todo):</p>
+<code id="saltDisplay"></code>
+<p class="label">ITERATIONS:</p>
+<code id="iterDisplay">200000</code>
+
+<div style="margin-top:16px">
+  <p style="font-weight:850;color:var(--green-dark);margin-bottom:8px">Instrucciones:</p>
+  <div class="step"><strong>1</strong> En index.html, cambia <code>SECURE_MODE</code> de <code>false</code> a <code>true</code>.</div>
+  <div class="step"><strong>2</strong> Pega el valor de STORED_HASH en la variable <code>STORED_HASH</code>.</div>
+  <div class="step"><strong>3</strong> Pega el valor de SALT en la variable <code>SALT</code>.</div>
+  <div class="step"><strong>4</strong> Guarda la contraseña en un lugar seguro. <b>Sin la contraseña, nadie puede ver los itinerarios.</b> El hash no se puede revertir.</div>
+</div>
+
+<div class="warning">
+  Usa esta herramienta sin conexión a internet para máxima seguridad. La contraseña nunca se envía a ningún servidor — todo el proceso ocurre en tu navegador.
+</div>
+
+<div class="info">
+  <b>¿Cómo funciona?</b> PBKDF2 aplica 200,000 iteraciones de SHA-256 con un salt aleatorio de 32 bytes. Es matemáticamente imposible revertir el hash. Incluso si un atacante lee todo el código fuente, solo verá el hash y el salt, no la contraseña original. La única forma de romperlo es fuerza bruta, lo cual es inviable con una contraseña fuerte.
+</div>
+</div>
+</div>
+
+<script>
+  var passInput = document.getElementById("password");
+  var genBtn    = document.getElementById("generateBtn");
+  var strength  = document.getElementById("strength");
+  var resultDiv = document.getElementById("result");
+
+  function checkStrength(pw) {
+    if (!pw) { strength.textContent = ""; genBtn.disabled = true; return; }
+    var score = 0;
+    if (pw.length >= 12) score++;
+    if (pw.length >= 16) score++;
+    if (pw.length >= 20) score++;
+    if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
+    if (/\d/.test(pw)) score++;
+    if (/[^a-zA-Z0-9]/.test(pw)) score++;
+
+    strength.className = "strength";
+    if (score <= 2) { strength.className += " weak"; strength.textContent = "Débil — usa al menos 16 caracteres con mayúsculas, números y símbolos."; genBtn.disabled = true; }
+    else if (score <= 4) { strength.className += " medium"; strength.textContent = "Aceptable — más caracteres y variedad la harían más segura."; genBtn.disabled = false; }
+    else { strength.className += " strong"; strength.textContent = "Fuerte — esta contraseña es resistente a fuerza bruta."; genBtn.disabled = false; }
+  }
+
+  passInput.addEventListener("input", function() { checkStrength(passInput.value); });
+
+  function hexFromBuffer(buf) {
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, "0"); }).join("");
+  }
+
+  genBtn.addEventListener("click", async function() {
+    var pw = passInput.value;
+    if (!pw) return;
+    genBtn.textContent = "Generando... (puede tardar 1-2 segundos)";
+    genBtn.disabled = true;
+
+    var salt = crypto.getRandomValues(new Uint8Array(32));
+    var saltHex = hexFromBuffer(salt);
+
+    var enc = new TextEncoder();
+    var keyMaterial = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveBits"]);
+    var derived = await crypto.subtle.deriveBits(
+      { name: "PBKDF2", salt: salt, iterations: 200000, hash: "SHA-256" },
+      keyMaterial, 256
+    );
+    var hashHex = hexFromBuffer(derived);
+
+    document.getElementById("hashDisplay").textContent = hashHex;
+    document.getElementById("saltDisplay").textContent = saltHex;
+    resultDiv.style.display = "block";
+    resultDiv.scrollIntoView({ behavior: "smooth" });
+
+    genBtn.textContent = "Generar hash seguro";
+    genBtn.disabled = false;
+  });
+</script>
+</body>
+</html>

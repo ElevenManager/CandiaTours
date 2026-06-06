@@ -1,0 +1,23 @@
+═══════════════════════════════════════
+ CREDENCIALES DE CLIENTES — Candia Tours
+═══════════════════════════════════════
+
+Cliente: Junio
+Archivo: itinerario-valle-sagrado.html
+URL:     itinerario-valle-sagrado.html?cliente=Junio
+Clave:   94475
+Fechas:  10 al 19 de junio de 2026
+Destino: Valle Sagrado y Machu Picchu (10 días)
+
+═══════════════════════════════════════
+
+Para crear un nuevo cliente:
+1. Copia itinerario-valle-sagrado.html  →  itinerario-NOMBRE-CLIENTE.html
+2. Cambia las fechas y contenido del itinerario
+3. Ejecuta:  node gen-hash.js   (con la nueva contraseña)
+   o abre generar-clave.html en el navegador
+4. Pega STORED_HASH y SALT en la sección CONFIGURACIÓN DE SEGURIDAD
+5. Asegúrate que SECURE_MODE = true
+6. Agrega la entrada aquí debajo
+
+═══════════════════════════════════════
