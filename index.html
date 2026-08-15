@@ -3,612 +3,1963 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta name="description" content="Candia Tours - Operador turístico local en Cusco, Perú. Itinerarios 100% personalizados, movilidad privada, tours a Machu Picchu, Valle Sagrado, City Tour, Hoteles y más."/>
 <title>Candia Tours | Operador Turístico en Cusco, Perú</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
 <style>
   :root {
-    --bg: #f7f1e8;
-    --paper: #fffaf2;
-    --ink: #2d231b;
-    --muted: #6d5d4e;
-    --gold: #c8923b;
-    --gold-dark: #8f6323;
-    --green: #426b4f;
-    --green-dark: #284633;
-    --terracotta: #b85f3d;
-    --blue: #395c78;
-    --line: rgba(45,35,27,.14);
-    --shadow: 0 18px 45px rgba(54,36,18,.16);
-    --radius: 26px;
-    --ease: cubic-bezier(0.23,1,0.32,1);
+    --bg-base: #faf8f5;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f5efe6;
+    --bg-subtle: #f0e9dc;
+    
+    --ink-primary: #1e1b18;
+    --ink-secondary: #574e45;
+    --ink-muted: #85786c;
+    --ink-light: #ffffff;
+
+    --emerald-deep: #163323;
+    --emerald: #224d36;
+    --emerald-light: #eef5f1;
+    --emerald-border: rgba(34, 77, 54, 0.18);
+
+    --gold: #c28b38;
+    --gold-dark: #94651e;
+    --gold-light: #fdf6ec;
+    --gold-border: rgba(194, 139, 56, 0.25);
+
+    --terracotta: #b65a38;
+    --terracotta-light: #faeee9;
+
+    --whatsapp: #25d366;
+    --whatsapp-dark: #128c7e;
+
+    --border-hairline: rgba(30, 27, 24, 0.08);
+    --border-medium: rgba(30, 27, 24, 0.14);
+
+    --shadow-sm: 0 2px 8px rgba(30, 27, 24, 0.04);
+    --shadow-md: 0 12px 32px -4px rgba(30, 27, 24, 0.08), 0 4px 12px rgba(30, 27, 24, 0.03);
+    --shadow-lg: 0 24px 54px -8px rgba(30, 27, 24, 0.12), 0 8px 24px rgba(30, 27, 24, 0.04);
+    --shadow-glow: 0 16px 36px rgba(194, 139, 56, 0.28);
+
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --radius-full: 9999px;
+
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    
+    --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  * { box-sizing:border-box;margin:0;padding:0; }
-  html { scroll-behavior:smooth; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  
   body {
-    font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(200,146,59,.22), transparent 34%),
-      radial-gradient(circle at 85% 15%, rgba(66,107,79,.16), transparent 30%),
-      linear-gradient(180deg,#fbf6ed 0%,var(--bg) 50%,#efe4d4 100%);
-    color:var(--ink);
-    line-height:1.65;
+    font-family: var(--font-sans);
+    background-color: var(--bg-base);
+    color: var(--ink-primary);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(194, 139, 56, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 10%, rgba(34, 77, 54, 0.06) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(182, 90, 56, 0.05) 0px, transparent 50%);
   }
-  img { max-width:100%;display:block; }
-  a { color:inherit;text-decoration:none; }
-  .page { width:min(1180px,calc(100% - 32px));margin:0 auto; }
 
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; }
+
+  .page-container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  /* ────────── TOPBAR & NAVIGATION ────────── */
   .topbar {
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(14px);
-    background:rgba(255,250,242,.84);
-    border-bottom:1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(250, 248, 245, 0.88);
+    border-bottom: 1px solid var(--border-hairline);
+    transition: all 0.35s var(--ease-luxury);
   }
+  
+  .topbar.scrolled {
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-bottom-color: rgba(30, 27, 24, 0.06);
+  }
+
   .topbar-inner {
-    width:min(1180px,calc(100% - 32px));margin:0 auto;
-    min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
   }
-  .brand { display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.3px; }
-  .brand-mark {
-    width:44px;height:44px;border-radius:16px;
-    background:linear-gradient(135deg,var(--gold),var(--terracotta));
-    display:grid;place-items:center;color:white;
-    box-shadow:0 12px 22px rgba(184,95,61,.28);overflow:hidden;
-  }
-  .brand-mark svg { width:28px;height:28px; }
-  .brand small { display:block;font-weight:600;color:var(--muted);margin-top:-4px; }
 
-  .nav { display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end; }
-  .menu-toggle { display:none; }
-  .nav a, .btn {
-    border:1px solid rgba(45,35,27,.12);background:rgba(255,255,255,.58);
-    padding:10px 16px;border-radius:999px;font-size:.92rem;font-weight:750;
-    color:var(--green-dark);cursor:pointer;
-    transition:transform .3s var(--ease),background .3s,box-shadow .3s;
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform 0.3s ease;
   }
-  .nav a:hover, .btn:hover { transform:translateY(-2px);background:white;box-shadow:0 10px 20px rgba(45,35,27,.10); }
-  .nav a.accent { background:var(--green-dark);color:white;border-color:var(--green-dark); }
-  .nav a.accent:hover { background:#1f3929; }
+  .brand:hover { transform: translateY(-1px); }
 
-  .hero { padding:46px 0 26px; }
-  .hero-card {
-    overflow:hidden;border-radius:34px;min-height:580px;position:relative;
-    box-shadow:var(--shadow);background:#1a120d;isolation:isolate;
+  .brand-logo-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(30, 27, 24, 0.12);
+    border: 2px solid white;
+    flex-shrink: 0;
   }
-  .hero-card::after {
-    content:"";position:absolute;inset:0;z-index:1;
-    background:
-      linear-gradient(135deg, rgba(20,14,10,.92) 0%, rgba(20,14,10,.55) 45%, rgba(20,14,10,.10) 75%),
-      linear-gradient(180deg, transparent 30%, rgba(20,14,10,.82));
+  .brand-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .hero-card img { position:absolute;inset:0;height:100%;width:100%;object-fit:cover;filter:saturate(1.05);z-index:0; }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.28rem;
+    letter-spacing: -0.01em;
+    color: var(--emerald-deep);
+    line-height: 1.15;
+  }
+  .brand-subtitle {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--gold-dark);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    padding: 8px 16px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+    border-radius: var(--radius-full);
+    transition: all 0.25s ease;
+  }
+  .nav-link:hover {
+    color: var(--emerald-deep);
+    background: rgba(34, 77, 54, 0.06);
+  }
+
+  .btn-nav-outline {
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--emerald-deep);
+    border: 1.5px solid var(--emerald-border);
+    border-radius: var(--radius-full);
+    background: transparent;
+    transition: all 0.3s var(--ease-luxury);
+  }
+  .btn-nav-outline:hover {
+    background: var(--emerald-light);
+    border-color: var(--emerald);
+    transform: translateY(-1px);
+  }
+
+  .btn-nav-primary {
+    padding: 9px 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-light);
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-deep));
+    border-radius: var(--radius-full);
+    box-shadow: 0 6px 18px rgba(22, 51, 35, 0.22);
+    transition: all 0.3s var(--ease-luxury);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-nav-primary:hover {
+    box-shadow: 0 8px 24px rgba(22, 51, 35, 0.35);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2b5e43, #163323);
+  }
+
+  .menu-toggle {
+    display: none;
+    background: var(--emerald-light);
+    border: 1px solid var(--emerald-border);
+    color: var(--emerald-deep);
+    padding: 10px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ────────── HERO SECTION ────────── */
+  .hero-section {
+    padding: 24px 0 40px;
+  }
+
+  .hero-container {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 600px;
+    background-color: var(--emerald-deep);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.88) contrast(1.04);
+    transform: scale(1.02);
+    transition: transform 1.2s var(--ease-luxury);
+  }
+  .hero-container:hover .hero-bg-img {
+    transform: scale(1.05);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 38, 28, 0.2) 0%,
+      rgba(15, 30, 22, 0.65) 50%,
+      rgba(10, 20, 15, 0.94) 100%
+    );
+    z-index: 1;
+  }
+
   .hero-content {
-    position:relative;z-index:2;min-height:580px;
-    padding:clamp(30px,5vw,70px);
-    display:flex;flex-direction:column;justify-content:flex-end;color:white;max-width:820px;
+    position: relative;
+    z-index: 2;
+    padding: clamp(32px, 6vw, 72px);
+    color: var(--ink-light);
+    max-width: 860px;
   }
-  .eyebrow {
-    display:inline-flex;width:fit-content;align-items:center;gap:9px;
-    border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.15);
-    backdrop-filter:blur(8px);padding:8px 14px;border-radius:999px;font-weight:800;margin-bottom:18px;
-  }
-  h1 { font-size:clamp(2.5rem,6.5vw,5.6rem);line-height:.95;letter-spacing:-3px;margin-bottom:16px; }
-  .hero-content p { font-size:clamp(1rem,1.6vw,1.24rem);color:rgba(255,255,255,.90);max-width:700px; }
-  .hero-actions { display:flex;gap:12px;flex-wrap:wrap;margin-top:28px; }
-  .hero-actions .primary { background:var(--gold);color:#21160e;border:none;font-weight:850;font-size:.98rem;padding:13px 24px; }
-  .hero-actions .secondary { color:white;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-weight:750; }
 
-  section { padding:38px 0; }
-  .section-head { display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:26px; }
-  .section-title { max-width:820px; }
-  .section-title .tag {
-    color:var(--terracotta);font-weight:900;letter-spacing:.09em;text-transform:uppercase;
-    font-size:.78rem;margin-bottom:6px;
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    padding: 7px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #f7e6ce;
+    margin-bottom: 20px;
   }
-  h2 { font-size:clamp(1.8rem,3.8vw,3.2rem);line-height:1.05;letter-spacing:-1.4px;color:var(--green-dark); }
-  .section-title p { color:var(--muted);margin-top:10px;max-width:790px; }
 
-  .stats { display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 38px; }
-  .stat {
-    background:rgba(255,250,242,.88);border:1px solid var(--line);border-radius:24px;
-    padding:20px;box-shadow:0 12px 28px rgba(45,35,27,.08);text-align:center;
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-wrap: balance;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
-  .stat strong { display:block;font-size:1.6rem;color:var(--green-dark);line-height:1.15; }
-  .stat span { color:var(--muted);font-weight:650;font-size:.94rem; }
 
-  .about-row { display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center; }
-  .about-text h3 { font-size:1.5rem;color:var(--green-dark);margin-bottom:12px;letter-spacing:-.3px; }
-  .about-text p { color:var(--muted);margin-bottom:14px;font-size:.98rem; }
-  .about-img {
-    border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
-    aspect-ratio:4/3;background:linear-gradient(135deg,var(--green),var(--gold));position:relative;
+  .hero-title span {
+    font-style: italic;
+    color: #f5d49f;
+    font-weight: 500;
   }
-  .about-img img { width:100%;height:100%;object-fit:cover; }
 
-  .service-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+  .hero-desc {
+    font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-gold-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #d8a04b, var(--gold));
+    color: #1a1208;
+    padding: 15px 30px;
+    border-radius: var(--radius-full);
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.35s var(--ease-luxury);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-gold-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 42px rgba(194, 139, 56, 0.42);
+    background: linear-gradient(135deg, #e4ad5c, #d8a04b);
+  }
+
+  .btn-glass-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.98rem;
+    transition: all 0.35s var(--ease-luxury);
+  }
+  .btn-glass-cta:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* ────────── STATS & TRUST ────────── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 20px 0 54px;
+  }
+
+  .stat-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-medium);
+  }
+
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--emerald-deep);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-secondary);
+  }
+
+  /* ────────── SECTION GENERAL HEADERS ────────── */
+  .section-padding {
+    padding: 50px 0;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 46px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    color: var(--gold-dark);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    color: var(--emerald-deep);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--ink-secondary);
+    line-height: 1.6;
+  }
+
+  /* ────────── ABOUT SECTION ────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 4.5vw, 54px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .about-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    color: var(--emerald-deep);
+    margin-bottom: 18px;
+    line-height: 1.25;
+  }
+
+  .about-content p {
+    color: var(--ink-secondary);
+    font-size: 1rem;
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+
+  .about-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--emerald-light);
+    color: var(--emerald-deep);
+    border-radius: var(--radius-full);
+    font-size: 0.84rem;
+    font-weight: 700;
+  }
+
+  .about-visual {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: var(--shadow-md);
+  }
+  .about-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-luxury);
+  }
+  .about-visual:hover img { transform: scale(1.04); }
+
+  .about-visual-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+  }
+  .about-visual-badge strong {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--emerald-deep);
+  }
+  .about-visual-badge span {
+    font-size: 0.76rem;
+    color: var(--gold-dark);
+    font-weight: 600;
+  }
+
+  /* ────────── SERVICES SECTION ────────── */
+  .category-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px 0 24px;
+  }
+  .category-divider::before,
+  .category-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+  }
+  .category-divider span {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--gold-dark);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gold-light);
+    border: 1px solid var(--gold-border);
+    padding: 6px 18px;
+    border-radius: var(--radius-full);
+  }
+
+  .service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
   .service-card {
-    background:rgba(255,250,242,.94);border:1px solid var(--line);border-radius:var(--radius);
-    overflow:hidden;box-shadow:0 14px 34px rgba(45,35,27,.09);
-    transition:transform .4s var(--ease),box-shadow .4s;
+    background: var(--bg-surface);
+    border: 1.5px solid rgba(30, 27, 24, 0.08);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 26px -4px rgba(30, 27, 24, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s var(--ease-luxury);
+    position: relative;
   }
-  .service-card:hover { transform:translateY(-5px);box-shadow:0 24px 52px rgba(45,35,27,.15); }
-  .service-card.featured { grid-column:span 2; }
-  .service-img { height:220px;position:relative;background:linear-gradient(135deg,var(--green),var(--gold));overflow:hidden; }
-  .service-img img { width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease); }
-  .service-card:hover .service-img img { transform:scale(1.06); }
-  .service-img::after {
-    content:"";position:absolute;inset:0;z-index:1;
-    background:linear-gradient(180deg,transparent 55%,rgba(29,22,16,.58));
-    pointer-events:none;
-  }
-  .service-badge {
-    position:absolute;top:14px;left:14px;z-index:2;
-    padding:7px 12px;border-radius:999px;font-weight:850;font-size:.78rem;
-    background:rgba(255,250,242,.94);color:var(--green-dark);
-    box-shadow:0 6px 16px rgba(0,0,0,.18);
-  }
-  .service-body { padding:clamp(16px,2.5vw,24px); }
-  .service-body h3 { font-size:1.16rem;color:var(--green-dark);margin-bottom:8px;letter-spacing:-.3px; }
-  .service-body .desc { color:var(--muted);font-size:.92rem;margin-bottom:12px;line-height:1.55; }
-  .highlights { display:flex;flex-wrap:wrap;gap:6px; }
-  .highlight-tag {
-    background:rgba(200,146,59,.14);color:var(--gold-dark);
-    padding:5px 10px;border-radius:999px;font-size:.78rem;font-weight:700;
+  .service-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 48px -8px rgba(22, 51, 35, 0.16);
+    border-color: rgba(34, 77, 54, 0.28);
   }
 
-  .itinerary-preview {
-    background:rgba(255,250,242,.94);border:1px solid var(--line);border-radius:var(--radius);
-    padding:clamp(24px,4vw,40px);box-shadow:0 14px 34px rgba(45,35,27,.08);
-    display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:30px;
+  .service-card.featured {
+    grid-column: span 2;
   }
-  .itinerary-preview h3 { color:var(--green-dark);font-size:1.35rem;margin-bottom:10px; }
-  .itinerary-preview p { color:var(--muted);margin-bottom:16px; }
-  .itinerary-preview .preview-img {
-    border-radius:20px;overflow:hidden;box-shadow:var(--shadow);
-    aspect-ratio:16/10;background:linear-gradient(135deg,var(--green),var(--gold));
-  }
-  .itinerary-preview .preview-img img { width:100%;height:100%;object-fit:cover; }
 
-  .why-us { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+  .service-img-wrap {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    background: #1c2e22;
+  }
+  .service-card.featured .service-img-wrap {
+    height: 250px;
+  }
+
+  .service-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-luxury);
+  }
+  .service-card:hover .service-img-wrap img {
+    transform: scale(1.07);
+  }
+
+  .service-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.55) 100%);
+  }
+
+  .service-price-pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    color: var(--emerald-deep);
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .service-price-pill small {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+
+  .service-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 16px;
+  }
+
+  .card-title-block h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--emerald-deep);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .card-subtitle {
+    font-size: 0.86rem;
+    color: var(--ink-secondary);
+    line-height: 1.45;
+  }
+
+  /* ────────── ROUTE STOPS TIMELINE COMPONENT ────────── */
+  .card-route-box {
+    background: #fdfbf7;
+    border: 1px solid rgba(194, 139, 56, 0.22);
+    border-radius: var(--radius-sm);
+    padding: 13px 14px;
+  }
+  .route-label {
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--emerald-deep);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .route-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .route-stop {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid rgba(30, 27, 24, 0.1);
+    padding: 4px 9px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+  .route-stop small {
+    font-weight: 500;
+    color: var(--ink-muted);
+    font-size: 0.72rem;
+  }
+  .stop-num {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--emerald-deep);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+  .route-arrow {
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 0.8rem;
+  }
+
+  /* ────────── INCLUSIONS LIST COMPONENT ────────── */
+  .card-inclusions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    background: var(--emerald-light);
+    border: 1px solid rgba(34, 77, 54, 0.14);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+  .inclusion-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--emerald-deep);
+  }
+  .inc-check {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--emerald);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  /* ────────── HOTEL SECTION STYLING (APARTADO DEDICADO) ────────── */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .hotel-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(194, 139, 56, 0.25);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 30px -5px rgba(194, 139, 56, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s var(--ease-luxury);
+  }
+  .hotel-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px -10px rgba(194, 139, 56, 0.2);
+    border-color: var(--gold);
+  }
+
+  .hotel-img-wrap {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hotel-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-luxury);
+  }
+  .hotel-card:hover .hotel-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .service-disclaimer-pill {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 2;
+    background: rgba(22, 51, 35, 0.85);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.02em;
+  }
+
+  .card-hotel-amenities {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: #fdfbf7;
+    border: 1px solid rgba(194, 139, 56, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+  }
+  .amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(30, 27, 24, 0.08);
+    border-radius: 10px;
+    padding: 9px 12px;
+  }
+  .amenity-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  .amenity-text strong {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-primary);
+    line-height: 1.2;
+  }
+  .amenity-text span {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* ────────── CARD ACTION BUTTON (WHATSAPP INTEGRATED) ────────── */
+  .btn-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    padding: 12px 18px;
+    background: #ffffff;
+    border: 1.5px solid var(--emerald-border);
+    color: var(--emerald-deep);
+    border-radius: var(--radius-full);
+    font-weight: 750;
+    font-size: 0.88rem;
+    transition: all 0.3s var(--ease-luxury);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-card-action:hover {
+    background: var(--whatsapp-dark);
+    color: #ffffff;
+    border-color: var(--whatsapp-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(18, 140, 126, 0.28);
+  }
+  .btn-card-action span.wpp-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ────────── FLOATING WHATSAPP BUTTON ────────── */
+  .floating-wpp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background: #25d366;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    transition: all 0.35s var(--ease-luxury);
+    border: 2px solid white;
+    text-decoration: none;
+  }
+  .floating-wpp-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+    background: #20ba5a;
+    color: #ffffff;
+  }
+  .floating-wpp-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  /* ────────── ITINERARY SHOWCASE ────────── */
+  .itinerary-showcase {
+    background: linear-gradient(145deg, #ffffff, var(--bg-surface-elevated));
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    padding: clamp(28px, 4.5vw, 52px);
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .itinerary-info h3 {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    color: var(--emerald-deep);
+    margin-bottom: 12px;
+  }
+  .itinerary-info p {
+    color: var(--ink-secondary);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .itinerary-badge-list {
+    font-size: 0.9rem;
+    color: var(--gold-dark);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .itinerary-security-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-top: 14px;
+  }
+
+  .itinerary-cta-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px 0 10px;
+  }
+
+  .itinerary-preview-img {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 16/11;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid white;
+    position: relative;
+  }
+  .itinerary-preview-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ────────── WHY US (BENEFITS) ────────── */
+  .why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
   .why-card {
-    background:rgba(255,250,242,.94);border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px;box-shadow:0 14px 34px rgba(45,35,27,.08);text-align:center;
-    transition:transform .3s var(--ease);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-md);
+    padding: 30px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury);
+    text-align: left;
   }
-  .why-card:hover { transform:translateY(-3px); }
-  .why-card .icon {
-    width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
-    margin:0 auto 18px;font-size:1.7rem;
-    background:linear-gradient(135deg,rgba(200,146,59,.22),rgba(184,95,61,.16));
+  .why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(34, 77, 54, 0.16);
   }
-  .why-card h3 { color:var(--green-dark);font-size:1.1rem;margin-bottom:6px; }
-  .why-card p { color:var(--muted);font-size:.92rem; }
 
-  .cta-banner {
-    text-align:center;background:linear-gradient(135deg,var(--green-dark),#1a2e21);
-    border-radius:var(--radius);padding:clamp(28px,5vw,56px);
-    color:white;margin-top:20px;box-shadow:var(--shadow);
+  .why-icon-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    border: 1px solid rgba(194, 139, 56, 0.2);
   }
-  .cta-banner h2 { color:white;margin-bottom:12px; }
-  .cta-banner p { color:rgba(255,255,255,.82);max-width:620px;margin:0 auto 22px; }
-  .cta-banner .btn-cta {
-    display:inline-block;background:var(--gold);color:#21160e;border:none;
-    font-weight:900;font-size:1.05rem;padding:15px 32px;border-radius:999px;
-    cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s;
-  }
-  .cta-banner .btn-cta:hover { transform:translateY(-3px);box-shadow:0 14px 30px rgba(200,146,59,.35); }
 
+  .why-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--emerald-deep);
+    margin-bottom: 8px;
+  }
+  .why-card p {
+    color: var(--ink-secondary);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ────────── CTA BANNER ────────── */
+  .cta-section {
+    padding: 30px 0 60px;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, #10261a 0%, #1a3c2a 60%, #153222 100%);
+    border-radius: var(--radius-lg);
+    padding: clamp(36px, 6vw, 68px);
+    text-align: center;
+    color: var(--ink-light);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(194, 139, 56, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-box h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+    color: #ffffff;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .cta-box p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.08rem;
+    max-width: 640px;
+    margin: 0 auto 30px;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  /* ────────── FOOTER ────────── */
   .footer {
-    margin-top:36px;padding:38px 0 48px;color:var(--muted);text-align:center;
-    border-top:1px solid var(--line);
-  }
-  .footer b { color:var(--green-dark); }
-
-  .section-divider {
-    text-align:center;padding:10px 0 6px;
-    color:var(--gold);font-weight:850;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-hairline);
+    padding: 46px 0 40px;
+    text-align: center;
+    color: var(--ink-muted);
   }
 
-  @media (max-width:900px) {
-    .topbar-inner { align-items:flex-start;padding:14px 0;flex-direction:column; }
-    .nav { justify-content:flex-start; }
-    .stats,.why-us { grid-template-columns:repeat(2,1fr); }
-    .service-cards { grid-template-columns:repeat(2,1fr); }
-    .service-card.featured { grid-column:span 1; }
-    .about-row,.itinerary-preview { grid-template-columns:1fr; }
-  }
-  @media (max-width:620px) {
-    .page,.topbar-inner { width:min(100% - 20px,1180px); }
-    .hero { padding-top:20px; }
-    .hero-card,.hero-content { min-height:500px; }
-    h1 { letter-spacing:-1.6px; }
-    .stats,.why-us { grid-template-columns:1fr; }
-    .service-cards { grid-template-columns:1fr; }
-    .section-head { display:block; }
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--emerald-deep);
+    margin-bottom: 12px;
   }
 
-  /* Responsive refinements for touch devices and narrow screens. */
-  body { overflow-x:clip; }
-  .topbar-inner,.nav,.hero-content,.service-card,.about-text,.itinerary-preview > * { min-width:0; }
-  h1,h2,h3,p { overflow-wrap:anywhere; }
-  h1,h2,h3 { text-wrap:balance; }
-  p { text-wrap:pretty; }
+  .footer-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--emerald-deep);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
 
-  @media (max-width:900px) {
-    .topbar-inner { gap:12px;position:relative; }
-    .brand { min-width:0; }
-    .menu-toggle {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:7px;
-      min-height:44px;
-      margin-left:auto;
-      padding:9px 13px;
-      border:1px solid rgba(45,35,27,.14);
-      border-radius:999px;
-      background:var(--green-dark);
-      color:white;
-      font:inherit;
-      font-size:.86rem;
-      font-weight:850;
-      cursor:pointer;
+  .footer p {
+    font-size: 0.92rem;
+    max-width: 600px;
+    margin: 0 auto 16px;
+    line-height: 1.6;
+  }
+
+  .footer-copyright {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--border-hairline);
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  /* ────────── RESPONSIVE BREAKPOINTS ────────── */
+  @media (max-width: 980px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .service-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card.featured { grid-column: span 1; }
+    .hotels-grid { grid-template-columns: 1fr; }
+    .itinerary-showcase { grid-template-columns: 1fr; gap: 28px; }
+    .why-us-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .menu-toggle { display: inline-flex; }
+    
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-lg);
+      flex-direction: column;
+      gap: 10px;
+      z-index: 101;
     }
-    .nav {
-      display:none;
-      position:absolute;
-      top:calc(100% + 8px);
-      left:0;
-      right:0;
-      z-index:70;
-      width:100%;
-      padding:10px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(255,250,242,.98);
-      box-shadow:0 12px 28px rgba(45,35,27,.14);
+    .nav-menu.is-active {
+      display: flex;
     }
-    .nav.is-open { display:grid;grid-template-columns:1fr;gap:6px; }
-    .nav a {
-      width:100%;
-      min-height:44px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      border-radius:11px;
-      background:white;
+    .nav-menu .nav-link,
+    .nav-menu .btn-nav-outline,
+    .nav-menu .btn-nav-primary {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
     }
-    .nav a.accent { margin-left:0 !important; }
   }
 
-  @media (max-width:620px) {
-    body { font-size:16px; }
-    section { padding:28px 0; }
-    .topbar-inner { min-height:64px;padding:10px 0;flex-direction:row;align-items:center; }
-    .brand { gap:10px;font-size:.95rem; }
-    .brand-mark { width:40px;height:40px;border-radius:13px;flex:0 0 auto; }
-    .brand small { font-size:.78rem; }
-    .nav a,.btn { padding:9px 13px;font-size:.86rem; }
-
-    .hero { padding:14px 0 18px; }
-    .hero-card { border-radius:18px;min-height:0; }
-    .hero-card,.hero-content { min-height:470px; }
-    .hero-content { padding:24px 18px; }
-    .eyebrow { max-width:100%;border-radius:14px;padding:7px 10px;font-size:.82rem;line-height:1.35; }
-    h1 { font-size:clamp(2rem,11vw,3.25rem);line-height:1;letter-spacing:-.04em; }
-    h2 { font-size:clamp(1.65rem,8vw,2.35rem);letter-spacing:-.03em; }
-    .hero-content p { font-size:.98rem;line-height:1.55; }
-    .hero-actions { display:grid;grid-template-columns:1fr;gap:9px;width:100%;margin-top:20px; }
-    .hero-actions .btn { width:100%;min-height:46px;text-align:center;display:grid;place-items:center; }
-
-    .stats { gap:10px;margin:18px 0 28px; }
-    .stat { border-radius:16px;padding:16px; }
-    .about-row { gap:20px; }
-    .about-img { border-radius:16px; }
-    .service-cards { gap:14px; }
-    .service-card { border-radius:16px; }
-    .service-img { height:190px; }
-    .itinerary-preview { border-radius:16px;padding:18px;gap:18px;margin-top:20px; }
-    .itinerary-preview .preview-img { border-radius:13px; }
-    .why-us { gap:12px; }
-    .why-card { border-radius:16px;padding:20px; }
-    .cta-banner { border-radius:16px;padding:28px 18px; }
-    .cta-banner .btn-cta { width:100%;padding:14px 18px; }
-    .footer { padding:28px 0 34px; }
+  @media (max-width: 640px) {
+    .page-container, .topbar-inner { width: calc(100% - 24px); }
+    .hero-container { min-height: 520px; }
+    .hero-content { padding: 28px 20px; }
+    .stats-grid { grid-template-columns: 1fr; gap: 12px; }
+    .service-cards-grid { grid-template-columns: 1fr; }
+    .hotels-grid { grid-template-columns: 1fr; }
+    .card-hotel-amenities { grid-template-columns: 1fr; }
+    .why-us-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+    .floating-wpp-btn span { display: none; }
+    .floating-wpp-btn { padding: 14px; border-radius: 50%; bottom: 18px; right: 18px; }
   }
 
-  @media (max-width:380px) {
-    .page,.topbar-inner { width:calc(100% - 16px); }
-    .hero-card,.hero-content { min-height:450px; }
-    .hero-content { padding:20px 14px; }
-    .service-img { height:170px; }
+  /* Micro-animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s var(--ease-luxury), transform 0.7s var(--ease-luxury);
   }
-
-  @media (pointer:coarse) {
-    .nav a,.btn,.btn-cta { min-height:44px; }
-  }
-
-  @media (prefers-reduced-motion:reduce) {
-    html { scroll-behavior:auto; }
-    *,*::before,*::after { animation-duration:.01ms !important;transition-duration:.01ms !important; }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
 <body>
 
-<header class="topbar">
-<div class="topbar-inner">
-<a class="brand" href="#inicio">
-<div class="brand-mark">
-<img alt="Candia Tours" decoding="async" loading="eager" src="476147373_9071578796258584_6379627257895987610_n.jpg" style="width:100%;height:100%;object-fit:cover;"/>
-</div>
-<div>Candia Tours<small>Operador turístico en Cusco</small></div>
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a class="floating-wpp-btn" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20tours" target="_blank" aria-label="Escribir por WhatsApp a Candia Tours">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.062-2.127-.534-1.637-.681-2.697-2.336-2.778-2.446-.081-.11-.663-.883-.663-1.684 0-.802.417-1.196.565-1.359.149-.163.326-.204.435-.204.108 0 .217.001.312.006.1.005.234-.038.366.28.136.327.464 1.134.505 1.216.041.082.068.177.014.285-.054.109-.082.177-.163.272-.082.096-.172.214-.246.287-.082.081-.168.17-.072.334.095.163.424.7.91 1.134.626.558 1.154.73 1.318.812.163.081.258.07.353-.041.096-.11.408-.476.517-.639.108-.163.217-.136.366-.082.149.054.951.449 1.115.531.163.081.272.122.312.19.041.068.041.395-.103.8zm-3.392-12.416c-5.503 0-9.969 4.466-9.969 9.969 0 1.761.46 3.477 1.334 4.992l-1.42 5.187 5.321-1.396c1.458.795 3.107 1.217 4.734 1.217 5.503 0 9.969-4.466 9.969-9.969s-4.466-10-9.969-10z"/>
+  </svg>
+  <span>WhatsApp (+51 974 783 657)</span>
 </a>
-<button aria-controls="siteNav" aria-expanded="false" class="menu-toggle" type="button">Menú <span aria-hidden="true">☰</span></button>
-<nav class="nav" id="siteNav">
-<a href="#servicios">Servicios</a>
-<a href="#itinerarios">Itinerarios</a>
-<a href="#por-que">¿Por qué nosotros?</a>
-<a class="accent" href="itinerario-ejemplo.html">Itinerario ejemplo</a>
-<a class="accent" href="itinerario-valle-sagrado.html" style="margin-left:6px;">Ver mi itinerario</a>
-</nav>
-</div>
+
+<!-- TOPBAR -->
+<header class="topbar" id="siteHeader">
+  <div class="topbar-inner">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio de Candia Tours">
+      <div class="brand-logo-wrap">
+        <img alt="Candia Tours Logo" decoding="async" loading="eager" src="476147373_9071578796258584_6379627257895987610_n.jpg"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">Candia Tours</span>
+        <span class="brand-subtitle">Operador en Cusco</span>
+      </div>
+    </a>
+
+    <button aria-controls="siteNav" aria-expanded="false" class="menu-toggle" id="menuBtn" type="button">
+      <span>Menú</span>
+      <span aria-hidden="true">☰</span>
+    </button>
+
+    <nav class="nav-menu" id="siteNav">
+      <a class="nav-link" href="#servicios">Tours & Circuitos</a>
+      <a class="nav-link" href="#hoteles">Hoteles</a>
+      <a class="nav-link" href="#itinerarios">Itinerarios</a>
+      <a class="nav-link" href="#por-que">¿Por qué nosotros?</a>
+      <a class="btn-nav-outline" href="itinerario-ejemplo.html">Itinerario Ejemplo</a>
+      <a class="btn-nav-primary" href="itinerario-valle-sagrado.html">Acceso Clientes →</a>
+    </nav>
+  </div>
 </header>
 
-<main class="page" id="inicio">
+<main id="inicio">
 
-<section class="hero">
-<article class="hero-card">
-<img alt="Sacsayhuamán, Cusco, Perú" decoding="async" loading="eager" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sacsayhuam%C3%A1n%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2027.JPG?width=1600"/>
-<div class="hero-content">
-<div class="eyebrow">Operador turístico local · Cusco, Perú</div>
-<h1>Candia Tours</h1>
-<p>Hacemos realidad tu viaje soñado a Cusco. Itinerarios 100% personalizados, movilidad privada y atención cercana para turistas nacionales e internacionales.</p>
-<div class="hero-actions">
-<a class="btn primary" href="#servicios">Explorar circuitos</a>
-`<a class="btn secondary" href="#itinerarios">Itinerarios personalizados</a>
-</div>
-</div>
-</article>
-</section>
+  <!-- HERO SECTION -->
+  <section class="hero-section page-container">
+    <div class="hero-container reveal">
+      <img alt="Sacsayhuamán, Cusco, Perú" class="hero-bg-img" decoding="async" loading="eager" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sacsayhuam%C3%A1n%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2027.JPG?width=1600"/>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>✨</span> Operador Turístico Local · Cusco, Perú
+        </div>
+        <h1 class="hero-title">
+          Descubre la magia de Cusco <span>a tu propio ritmo.</span>
+        </h1>
+        <p class="hero-desc">
+          Hacemos realidad tu viaje soñado con itinerarios 100% a medida, movilidad privada de primera clase y guías locales expertos para viajeros nacionales e internacionales.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-gold-cta" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20planificar%20mi%20viaje%20a%20Cusco" target="_blank">
+            <span>Contactar al +51 974 783 657</span>
+            <span>→</span>
+          </a>
+          <a class="btn-glass-cta" href="#servicios">
+            <span>Ver Tours & Tarifas</span>
+            <span>↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="resumen">
-<div class="stats">
-<div class="stat"><strong>+10 años</strong><span>De experiencia en Cusco</span></div>
-<div class="stat"><strong>Nacionales e internacionales</strong><span>Turistas de todo el mundo</span></div>
-<div class="stat"><strong>7 circuitos</strong><span>Culturales y de aventura</span></div>
-<div class="stat"><strong>Movilidad privada</strong><span>Comodidad y flexibilidad</span></div>
-</div>
-<div class="about-row">
-<div class="about-text">
-<h3>Tu operador de confianza en la Ciudad Imperial</h3>
-<p>Candia Tours nace del amor por Cusco y su historia milenaria. Somos un operador turístico local especializado en crear experiencias únicas para viajeros que buscan algo más que un tour estándar.</p>
-<p>Nos enfocamos en turismo cultural, arqueológico y de naturaleza, diseñando cada itinerario según el ritmo, intereses y necesidades de cada cliente. Atendemos tanto a turistas nacionales como internacionales.</p>
-<p>Trabajamos con movilidad privada, guías expertos locales y gestionamos cada detalle: desde el recojo en el aeropuerto hasta el último boleto de ingreso.</p>
-</div>
-<div class="about-img">
-<img alt="Vista de Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20Armas%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2053-56%20PAN.jpg?width=1400"/>
-</div>
-</div>
-</section>
+  <!-- STATS & RESUMEN -->
+  <section class="page-container">
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-number">+10</div>
+        <div class="stat-label">Años de experiencia en Cusco</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Itinerarios Personalizados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Circuitos Culturales y de Aventura</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Atención y Movilidad Privada</div>
+      </div>
+    </div>
 
-<section id="servicios">
-<div class="section-head">
-<div class="section-title">
-<div class="tag">Nuestros servicios</div>
-<h2>Circuitos en Cusco</h2>
-<p>Explora la ciudad imperial, el Valle Sagrado, Machu Picchu y las maravillas naturales de los Andes. Cada circuito puede adaptarse a tu ritmo y necesidades.</p>
-</div>
-</div>
+    <!-- ABOUT ROW -->
+    <div class="about-grid reveal">
+      <div class="about-content">
+        <span class="section-tag">Sobre Nosotros</span>
+        <h3>Tu operador de confianza en la Ciudad Imperial</h3>
+        <p>
+          Candia Tours nace de la pasión por Cusco y su milenaria herencia andina. Somos un operador turístico local enfocado en brindar un trato cercano, humano y sin intermediarios.
+        </p>
+        <p>
+          Nos especializamos en diseñar cada viaje respetando tus tiempos, preferencias y presupuesto. Coordinamos cada detalle: desde el recojo en el aeropuerto, ingresos oficiales a Machu Picchu, hasta la mejor gastronomía y hotelería.
+        </p>
+        <div class="about-pills">
+          <div class="about-pill">✓ Trato Directo (+51 974 783 657)</div>
+          <div class="about-pill">✓ Movilidad Privada</div>
+          <div class="about-pill">✓ Guías Profesionales</div>
+          <div class="about-pill">✓ Boletos Garantizados</div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <img alt="Plaza de Armas de Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20Armas%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2053-56%20PAN.jpg?width=1400"/>
+        <div class="about-visual-badge">
+          <strong>Cusco Auténtico</strong>
+          <span>Experiencias inolvidables</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="section-divider">— Circuitos Culturales y Arqueológicos —</div>
-<div class="service-cards" style="margin-top:18px;">
+  <!-- TOURS Y SERVICIOS -->
+  <section class="section-padding page-container" id="servicios">
+    <div class="section-header-center reveal">
+      <span class="section-tag">Tarifas y Circuitos</span>
+      <h2 class="section-heading">Tours y Circuitos Culturales</h2>
+      <p class="section-subtitle">
+        Diseñados con rutas optimizadas, traslados privados y guías acreditados para una experiencia insuperable.
+      </p>
+    </div>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Medio día</span>
-<img alt="Plaza de Armas de Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20Armas%20Cusco%2C%20Peru.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Circuito Centro Histórico</h3>
-<p class="desc">Paseo suave por el corazón de la Ciudad Imperial. Ideal como primer contacto con Cusco y para aclimatación.</p>
-<div class="highlights">
-<span class="highlight-tag">Plaza de Armas</span><span class="highlight-tag">Catedral</span><span class="highlight-tag">Qorikancha</span><span class="highlight-tag">Calles coloniales</span><span class="highlight-tag">Barrio San Blas</span>
-</div>
-</div>
-</article>
+    <div class="category-divider reveal">
+      <span>— Rutas y Paquetes Principales —</span>
+    </div>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Medio día</span>
-<img alt="Sacsayhuamán, Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sacsayhuam%C3%A1n%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2027.JPG?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Circuito 4 Ruinas</h3>
-<p class="desc">Recorrido por los cuatro sitios arqueológicos emblemáticos en las afueras de Cusco. Imprescindible para entender la grandeza inca.</p>
-<div class="highlights">
-<span class="highlight-tag">Sacsayhuamán</span><span class="highlight-tag">Q'enqo</span><span class="highlight-tag">Puka Pukara</span><span class="highlight-tag">Tambomachay</span>
-</div>
-</div>
-</article>
+    <div class="service-cards-grid">
 
-<article class="service-card featured">
-<div class="service-img">
-<span class="service-badge">Destacado</span>
-<img alt="Valle Sagrado de los Incas, Pisac" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pisac%20-%20Heiliges%20Tal.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Valle Sagrado de los Incas</h3>
-<p class="desc">El circuito más completo por el corazón del imperio incaico. Pueblos vivientes, complejos arqueológicos, andenes circulares y las fascinantes minas de sal de Maras.</p>
-<div class="highlights">
-<span class="highlight-tag">Pisac</span><span class="highlight-tag">Moray</span><span class="highlight-tag">Salineras de Maras</span><span class="highlight-tag">Ollantaytambo</span><span class="highlight-tag">Chinchero</span>
-</div>
-</div>
-</article>
+      <!-- 1. Machupicchu -->
+      <article class="service-card featured reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>$390 USD</span>
+            <small>c/u</small>
+          </div>
+          <img alt="Machu Picchu Maravilla del Mundo" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Machupicchu Todo Incluido</h3>
+            <p class="card-subtitle">La experiencia definitiva a la Maravilla del Mundo con logística integral garantizada.</p>
+          </div>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Circuito Sur</span>
-<img alt="Tipón, Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tipon%20-%20Cusco.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Valle Sur</h3>
-<p class="desc">Circuito corto pero fascinante con vestigios de la cultura Wari, ingeniería hidráulica inca y la "Capilla Sixtina de América" en Andahuaylillas.</p>
-<div class="highlights">
-<span class="highlight-tag">Pikillaqta</span><span class="highlight-tag">Tipón</span><span class="highlight-tag">Andahuaylillas</span>
-</div>
-</div>
-</article>
+          <!-- RUTA CONECTADA -->
+          <div class="card-route-box">
+            <div class="route-label"><span>🗺️</span> Ruta y Traslados:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Cusco ➔ Ollantaytambo</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Tren Turístico Ida y Vuelta</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Bus Consettur Subida / Bajada</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">4</span> Santuario Histórico de Machupicchu</span>
+            </div>
+          </div>
 
-<article class="service-card featured">
-<div class="service-img">
-<span class="service-badge">Imperdible</span>
-<img alt="Machu Picchu, maravilla del mundo" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Circuito de Machu Picchu</h3>
-<p class="desc">La ciudadela inca, una de las siete maravillas del mundo moderno. Accede mediante los circuitos oficiales (Clásico, Panorámico y más) diseñados para conservar el patrimonio.</p>
-<div class="highlights">
-<span class="highlight-tag">Circuito Clásico</span><span class="highlight-tag">Circuito Panorámico</span><span class="highlight-tag">Guía especializado</span><span class="highlight-tag">Tren + bus</span><span class="highlight-tag">Entrada anticipada</span>
-</div>
-</div>
-</article>
-</div>
+          <!-- INCLUSIONES -->
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Boleto oficial de ingreso a Machupicchu</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Tren turístico ida y vuelta (Inca Rail / PeruRail)</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte privado Cusco – Ollantaytambo – Cusco</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Bus oficial de subida y bajada (Aguas Calientes - Ciudadela)</div>
+          </div>
 
-<div class="section-divider" style="margin-top:28px;">— Circuitos de Aventura y Naturaleza —</div>
-<div class="service-cards" style="margin-top:18px;">
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20tour%20a%20Machupicchu%20($390%20USD)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Full Day</span>
-<img alt="Montaña de Siete Colores, Vinicunca" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Vinicunca.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Montaña de Siete Colores (Vinicunca) o Palcoyo</h3>
-<p class="desc">Caminatas de un día completo a formaciones geológicas de colores únicos por encima de los 4,900 m.s.n.m. Palcoyo es la alternativa más suave.</p>
-<div class="highlights">
-<span class="highlight-tag">+4,900 m.s.n.m.</span><span class="highlight-tag">Full day</span><span class="highlight-tag">Palcoyo</span>
-</div>
-</div>
-</article>
+      <!-- 2. City Tours -->
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 60 Soles</span>
+            <small>c/u</small>
+          </div>
+          <img alt="City Tour Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Plaza%20de%20Armas%20Cusco%2C%20Peru.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>City Tours Arqueológico</h3>
+            <p class="card-subtitle">Recorrido por los templos y fortalezas sagradas de la capital inca.</p>
+          </div>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Trekking</span>
-<img alt="Laguna Humantay, Cusco" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Humantay%20Lake.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Laguna Humantay</h3>
-<p class="desc">Trekking de ~2 horas desde Soraypampa hacia una laguna de aguas turquesas rodeada de glaciares. Un paisaje altoandino de ensueño.</p>
-<div class="highlights">
-<span class="highlight-tag">Aguas turquesas</span><span class="highlight-tag">Glaciares</span><span class="highlight-tag">Trekking 2 h</span><span class="highlight-tag">Soraypampa</span>
-</div>
-</div>
-</article>
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Paradas del Recorrido:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Coricancha</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Saqsayhuaman</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Qenqo</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">4</span> Pucapucara</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">5</span> Tambomachay</span>
+            </div>
+          </div>
 
-<article class="service-card">
-<div class="service-img">
-<span class="service-badge">Varios días</span>
-<img alt="Ruta de Lares, paisaje andino" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ollantaytambo%20-%20Heiliges%20Tal.jpg?width=1400"/>
-</div>
-<div class="service-body">
-<h3>Ruta de Lares</h3>
-<p class="desc">Circuito de varios días para sumergirte en la naturaleza y la cultura viva andina. Aguas termales naturales y comunidades locales en el camino.</p>
-<div class="highlights">
-<span class="highlight-tag">Aguas termales</span><span class="highlight-tag">Comunidades locales</span><span class="highlight-tag">Varios días</span>
-</div>
-</div>
-</article>
-</div>
-</section>
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico cómodo</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía profesional acreditado</div>
+          </div>
 
-<section id="itinerarios">
-<div class="section-head">
-<div class="section-title">
-<div class="tag">Itinerarios personalizados</div>
-<h2>Creamos el plan perfecto para ti</h2>
-<p>Cada cliente recibe un itinerario privado con su nombre y clave de acceso. Diseñado a medida según edad, ritmo e intereses.</p>
-</div>
-</div>
-<div class="itinerary-preview">
-<div>
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
-<a class="btn" href="itinerario-ejemplo.html" style="font-weight:750;">Itinerario ejemplo →</a>
-<a class="btn" href="itinerario-valle-sagrado.html" style="background:var(--green-dark);color:white;border-color:var(--green-dark);font-weight:850;padding:10px 20px;">Ver mi itinerario →</a>
-</div>
-<p>Así se ve un itinerario real de Candia Tours. Puedes ver uno de ejemplo sin contraseña o acceder al tuyo con la clave que te dimos.</p>
-<p style="font-size:.88rem;color:var(--gold-dark);">Incluye: Cusco · Valle Sagrado · Machu Picchu · Moray · Salineras · Pisac · Ollantaytambo · Chinchero.</p>
-<p style="font-size:.82rem;color:var(--muted);margin-top:6px;">Acceso protegido con PBKDF2 — solo el cliente con su clave puede verlo.</p>
-</div>
-<div class="preview-img">
-<img alt="Machu Picchu" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg?width=1400"/>
-</div>
-</div>
-<p style="text-align:center;margin-top:20px;color:var(--muted);">
-  ¿Tienes otras fechas, otro ritmo u otros intereses? Escríbenos y armamos tu itinerario a medida.
-</p>
-</section>
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20City%20Tour%20Cusco%20(S/%2060)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
 
-<section id="por-que">
-<div class="section-head">
-<div class="section-title">
-<div class="tag">Diferenciadores</div>
-<h2>¿Por qué viajar con Candia Tours?</h2>
-<p>No somos una agencia masiva. Somos un operador local con atención directa, flexible y humana.</p>
-</div>
-</div>
-<div class="why-us">
-<div class="why-card"><div class="icon">🗺️</div><h3>Itinerarios a tu medida</h3><p>Cada viaje se diseña según tu edad, ritmo, intereses y presupuesto. Sin prisas, sin grupos enormes.</p></div>
-<div class="why-card"><div class="icon">🚐</div><h3>Movilidad privada</h3><p>Olvídate de buses sobrecargados. Tú decides horarios, paradas y el ritmo de cada día.</p></div>
-<div class="why-card"><div class="icon">🧑‍🏫</div><h3>Guías expertos locales</h3><p>Conocedores de la historia, arqueología y cultura cusqueña. Hablamos tu idioma.</p></div>
-<div class="why-card"><div class="icon">🎫</div><h3>Gestión completa de boletos</h3><p>Coordinamos todos tus ingresos: Machu Picchu, trenes, buses, Boleto Turístico y más.</p></div>
-<div class="why-card"><div class="icon">🛡️</div><h3>Seguridad y confianza</h3><p>Vehículos en buen estado, rutas seguras, hoteles verificados y soporte durante todo el viaje.</p></div>
-<div class="why-card"><div class="icon">💬</div><h3>Atención personalizada</h3><p>Comunicación directa desde la planificación hasta el final. No hablas con un call center.</p></div>
-</div>
-</section>
+      <!-- 3. Valle Sagrado -->
+      <article class="service-card featured reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 150 Soles</span>
+            <small>c/u</small>
+          </div>
+          <img alt="Valle Sagrado de los Incas" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pisac%20-%20Heiliges%20Tal.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Valle Sagrado de los Incas</h3>
+            <p class="card-subtitle">La ruta más completa entre pueblos vivientes, andenes majestuosos y gastronomía local.</p>
+          </div>
 
-<section>
-<div class="cta-banner">
-<h2>¿Listo para conocer Cusco?</h2>
-<p>Cuéntanos tus fechas, intereses y ritmo deseado. Diseñamos el plan perfecto para ti, sin compromiso.</p>
-<a class="btn-cta" href="itinerario-ejemplo.html">Ver itinerario de ejemplo</a>
-</div>
-</section>
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Paradas del Circuito:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Mercado de Pisac</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Ruinas de Pisac</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Urubamba <small>(Buffet)</small></span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">4</span> Fortaleza Ollantaytambo</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">5</span> Chinchero</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico privado</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía oficial profesional</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Almuerzo buffet campestre en Urubamba</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20Valle%20Sagrado%20(S/%20150)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- 4. Maras Moray -->
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 60 Soles</span>
+            <small>c/u</small>
+          </div>
+          <img alt="Salineras de Maras y Moray" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Salineras%20de%20Maras%2C%20Maras%2C%20Per%C3%BA%2C%202015-07-30%2C%20DD%2012.JPG?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Maras, Moray & Salineras</h3>
+            <p class="card-subtitle">Laboratorio agrícola inca y más de 3,000 pozas naturales de sal.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Paradas del Recorrido:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Andenes de Moray</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Salineras de Maras</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Telares tradicionales de Chinchero</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía profesional</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20Maras%20y%20Moray%20(S/%2060)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- 5. Valle Sur -->
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 60 Soles</span>
+            <small>c/u</small>
+          </div>
+          <img alt="Valle Sur Tipon" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tipon%20-%20Cusco.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Valle Sur Tradicional</h3>
+            <p class="card-subtitle">Ingeniería hidráulica inca, ruinas Wari y la joya artística de Andahuaylillas.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Paradas del Recorrido:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Tipón <small>(Fuentes Incas)</small></span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Pikillaqta <small>(Cultura Wari)</small></span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Capilla Sixtina Andahuaylillas</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía profesional</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20Valle%20Sur%20(S/%2060)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- 6. Puno -->
+      <article class="service-card featured reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>$95 USD</span>
+            <small>c/u</small>
+          </div>
+          <img alt="Puno y Lago Titicaca" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=1200&auto=format&fit=crop&q=80"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Servicios Turísticos a Puno</h3>
+            <p class="card-subtitle">Expande tu travesía hacia el legendario Lago Titicaca y las islas flotantes.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>🗺️</span> Ruta y Destinos:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Traslado Cusco a Puno</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Lago Titicaca</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Islas Flotantes de los Uros</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico interprovincial</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía especializado</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Asistencia durante el trayecto</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20el%20tour%20a%20Puno%20($95%20USD)" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- AVENTURA Y NATURALEZA -->
+    <div class="category-divider reveal" style="margin-top: 48px;">
+      <span>— Circuitos de Aventura y Naturaleza —</span>
+    </div>
+
+    <div class="service-cards-grid">
+
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>Full Day</span>
+            <small>Trek</small>
+          </div>
+          <img alt="Montaña de Siete Colores" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Vinicunca.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Montaña 7 Colores (Vinicunca / Palcoyo)</h3>
+            <p class="card-subtitle">Formaciones geológicas milenarias sobre los 4,900 m.s.n.m.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Detalles de Ruta:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Cusco</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Desayuno</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Mirador +4,900 msnm</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico ida y vuelta</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía de montaña y primeros auxilios</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Opción alternativa Palcoyo (caminata suave)</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Monta%C3%B1a%207%20Colores" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>Trekking</span>
+            <small>Full Day</small>
+          </div>
+          <img alt="Laguna Humantay" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Humantay%20Lake.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Laguna Humantay & Glaciares</h3>
+            <p class="card-subtitle">Aguas turquesas sagradas al pie del imponente nevado Salkantay.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Detalles de Ruta:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Soraypampa</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Trekking ~2 horas</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Laguna Humantay</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Transporte turístico</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía oficial de trekking</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Bastones y asistencia</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Laguna%20Humantay" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-img-wrap">
+          <div class="service-price-pill">
+            <span>Varios Días</span>
+            <small>Expedición</small>
+          </div>
+          <img alt="Ruta de Lares" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ollantaytambo%20-%20Heiliges%20Tal.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Ruta de Lares & Aguas Termales</h3>
+            <p class="card-subtitle">Inmersión profunda en naturaleza andina, baños termales y comunidades locales.</p>
+          </div>
+
+          <div class="card-route-box">
+            <div class="route-label"><span>📍</span> Experiencias:</div>
+            <div class="route-timeline">
+              <span class="route-stop"><span class="stop-num">1</span> Aguas Termales de Lares</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">2</span> Comunidades Nativas</span>
+              <span class="route-arrow">➔</span>
+              <span class="route-stop"><span class="stop-num">3</span> Valle Sagrado</span>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Circuito personalizado de varios días</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Alimentación y campamento</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Guía y arrieros locales</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Ruta%20de%20Lares" target="_blank">
+            <span class="wpp-icon">💬 Consultar por WhatsApp</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- APARTADO DEDICADO: HOTELES Y ALOJAMIENTOS -->
+  <section class="section-padding page-container" id="hoteles">
+    <div class="section-header-center reveal">
+      <span class="section-tag">Alojamiento & Confort</span>
+      <h2 class="section-heading">Hoteles Recomendados</h2>
+      <p class="section-subtitle">
+        Hospedajes estratégicos, seguros y acogedores para que descanses con total tranquilidad durante tu estancia en Cusco y Machupicchu. <em>(Fotografías de habitaciones con fines ilustrativos y referenciales)</em>.
+      </p>
+    </div>
+
+    <div class="hotels-grid">
+
+      <!-- Hotel Machupicchu -->
+      <article class="hotel-card reveal">
+        <div class="hotel-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 200 Soles</span>
+            <small>/ noche</small>
+          </div>
+          <div class="service-disclaimer-pill">📸 Imagen Referencial</div>
+          <img alt="Hotel en Aguas Calientes Machupicchu (Foto referencial)" decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&auto=format&fit=crop&q=80"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Hotel en Machupicchu (Aguas Calientes)</h3>
+            <p class="card-subtitle">Ubicación estratégica en el pueblo de Aguas Calientes, ideal para subir a primera hora a la ciudadela. <em>*Habitaciones y hoteles verificados sujetos a disponibilidad.</em></p>
+          </div>
+
+          <div class="card-hotel-amenities">
+            <div class="amenity-item">
+              <span class="amenity-icon">🚿</span>
+              <div class="amenity-text">
+                <strong>Agua Caliente</strong>
+                <span>Presión constante 24h</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">📶</span>
+              <div class="amenity-text">
+                <strong>Wi-Fi de Alta Velocidad</strong>
+                <span>Conexión en habitaciones</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">📺</span>
+              <div class="amenity-text">
+                <strong>TV Cable Mágico</strong>
+                <span>Canales nacionales e internacionales</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">☕</span>
+              <div class="amenity-text">
+                <strong>Desayuno Incluido</strong>
+                <span>Nutritivo y temprano</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> A pocos minutos de la estación de tren y bus Consettur</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Custodia de equipaje gratuita durante tu tour</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20reservar%20Hotel%20en%20Machupicchu%20(S/%20200)" target="_blank">
+            <span class="wpp-icon">💬 Reservar por WhatsApp (+51 974 783 657)</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Hotel en Cusco -->
+      <article class="hotel-card reveal">
+        <div class="hotel-img-wrap">
+          <div class="service-price-pill">
+            <span>S/ 250 Soles</span>
+            <small>/ noche</small>
+          </div>
+          <div class="service-disclaimer-pill">📸 Imagen Referencial</div>
+          <img alt="Hotel Colonial en Cusco Ciudad Imperial (Foto referencial)" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Belmond_Hotel_Monasterio%2C_Cusco.jpg?width=1400"/>
+          <div class="service-img-overlay"></div>
+        </div>
+        <div class="service-card-body">
+          <div class="card-title-block">
+            <h3>Hotel en Cusco Ciudad Imperial</h3>
+            <p class="card-subtitle">Hospedaje confortable en zona céntrica y tranquila para tu aclimatación y descanso perfecto. <em>*Habitaciones y hoteles verificados sujetos a disponibilidad.</em></p>
+          </div>
+
+          <div class="card-hotel-amenities">
+            <div class="amenity-item">
+              <span class="amenity-icon">🛏️</span>
+              <div class="amenity-text">
+                <strong>Habitaciones</strong>
+                <span>Matrimonial o Doble</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">📍</span>
+              <div class="amenity-text">
+                <strong>Ubicación Céntrica</strong>
+                <span>A pasos del Centro Histórico</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">📶</span>
+              <div class="amenity-text">
+                <strong>Wi-Fi & Confort</strong>
+                <span>Camas abrigadoras y descanso</span>
+              </div>
+            </div>
+            <div class="amenity-item">
+              <span class="amenity-icon">🛡️</span>
+              <div class="amenity-text">
+                <strong>Recepción 24/7</strong>
+                <span>Atención y asistencia continua</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-inclusions">
+            <div class="inclusion-item"><span class="inc-check">✓</span> Opción de habitación Matrimonial o 2 Camas Dobles</div>
+            <div class="inclusion-item"><span class="inc-check">✓</span> Asistencia y coordinación de recojo al aeropuerto</div>
+          </div>
+
+          <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20reservar%20Hotel%20en%20Cusco%20(S/%20250)" target="_blank">
+            <span class="wpp-icon">💬 Reservar por WhatsApp (+51 974 783 657)</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ITINERARIOS PRIVADOS -->
+  <section class="section-padding page-container" id="itinerarios">
+    <div class="itinerary-showcase reveal">
+      <div class="itinerary-info">
+        <span class="section-tag">Acceso Exclusivo</span>
+        <h3>Itinerarios Privados y Personalizados</h3>
+        <p>
+          Cada viajero que confía en nosotros recibe un enlace directo y una clave de seguridad cifrada con PBKDF2 para consultar su programa detallado día por día, horarios y recomendaciones.
+        </p>
+        <div class="itinerary-badge-list">
+          📍 Incluye: Cusco · Valle Sagrado · Machu Picchu · Moray · Salineras · Pisac · Ollantaytambo · Chinchero.
+        </div>
+        <div class="itinerary-cta-btns">
+          <a class="btn-nav-primary" href="itinerario-valle-sagrado.html" style="padding: 12px 24px; font-size: 0.95rem;">
+            Ver Mi Itinerario Privado →
+          </a>
+          <a class="btn-nav-outline" href="itinerario-ejemplo.html" style="padding: 12px 20px;">
+            Ver Ejemplo Abierto
+          </a>
+        </div>
+        <div class="itinerary-security-note">
+          <span>🔒</span>
+          <span>Acceso privado protegido. Solo el cliente con su clave asignada puede visualizar los detalles.</span>
+        </div>
+      </div>
+      <div class="itinerary-preview-img">
+        <img alt="Machu Picchu Panorama" decoding="async" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Machu%20Picchu%2C%20Peru.jpg?width=1400"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIADORES -->
+  <section class="section-padding page-container" id="por-que">
+    <div class="section-header-center reveal">
+      <span class="section-tag">Nuestra Garantía</span>
+      <h2 class="section-heading">¿Por qué viajar con Candia Tours?</h2>
+      <p class="section-subtitle">
+        No somos una agencia masiva ni un intermediario impersonal. Somos anfitriones cusqueños apasionados por cuidar cada paso de tu aventura.
+      </p>
+    </div>
+
+    <div class="why-us-grid">
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">🗺️</div>
+        <h3>Itinerarios a Tu Medida</h3>
+        <p>Diseñamos el plan respetando tus fechas, edad, ritmo y deseos. Cero prisas y cero estrés.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">🚐</div>
+        <h3>Movilidad Privada</h3>
+        <p>Vehículos modernos, limpios y cómodos solo para ti y tus acompañantes, con total flexibilidad de paradas.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">🧑‍🏫</div>
+        <h3>Guías Expertos Locales</h3>
+        <p>Profesionales apasionados que te revelarán los secretos, cosmovisión e historia real de cada sitio arqueológico.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">🎫</div>
+        <h3>Gestión Integral de Boletos</h3>
+        <p>Nos encargamos de tus ingresos a Machu Picchu, boletos turísticos, trenes y buses para evitar colas.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">🛡️</div>
+        <h3>Seguridad y Respaldo</h3>
+        <p>Soporte continuo durante todo tu viaje en Cusco, hoteles verificados y rutas 100% seguras.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon-wrap">💬</div>
+        <h3>Atención Directa y Humana</h3>
+        <p>Contacto constante por WhatsApp (+51 974 783 657) antes y durante tu viaje. Hablas directamente con los organizadores.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-section page-container">
+    <div class="cta-box reveal">
+      <h2>¿Listo para vivir la magia de Cusco?</h2>
+      <p>
+        Cuéntanos tus fechas y planes. Te prepararemos una propuesta a medida sin compromiso para que disfrutes la mejor experiencia en los Andes.
+      </p>
+      <a class="btn-gold-cta" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20planificar%20mi%20viaje%20a%20Cusco" target="_blank">
+        <span>Escríbenos al WhatsApp (+51 974 783 657)</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer class="footer">
-<p><b>Candia Tours · Operador turístico en Cusco, Perú.</b><br/>
-Ayudamos a turistas nacionales e internacionales a cumplir sus planes de visita a la Ciudad Imperial y sus maravillas.</p>
+  <div class="page-container">
+    <div class="footer-logo">
+      <span>🏔️</span>
+      <span>Candia Tours Cusco</span>
+    </div>
+    <div class="footer-contact">
+      <span>📱 WhatsApp Directo:</span>
+      <a href="https://wa.me/51974783657" target="_blank" style="color:var(--emerald); text-decoration:underline;">+51 974 783 657</a>
+    </div>
+    <p>
+      Operador turístico local en Cusco, Perú. Especialistas en turismo cultural, arqueológico y de naturaleza para viajeros nacionales e internacionales.
+    </p>
+    <div class="footer-copyright">
+      © 2026 Candia Tours. Todos los derechos reservados. Cusco, Perú.
+    </div>
+  </div>
 </footer>
 
 <script>
-  var cards = document.querySelectorAll(".service-card,.why-card,.stat,.about-img,.itinerary-preview");
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.animate([
-          { opacity:0, transform:"translateY(24px)" },
-          { opacity:1, transform:"translateY(0)" }
-        ], { duration:700, easing:"cubic-bezier(0.23,1,0.32,1)", fill:"both" });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold:0.15 });
-  cards.forEach(function(card) { observer.observe(card); });
+  // Sticky Topbar Shadow on Scroll
+  var topbar = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) {
+      topbar.classList.add('scrolled');
+    } else {
+      topbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
 
-  var menuToggle = document.querySelector(".menu-toggle");
-  var siteNav = document.querySelector(".nav");
-  if (menuToggle && siteNav) {
-    menuToggle.addEventListener("click", function() {
-      var open = siteNav.classList.toggle("is-open");
-      menuToggle.setAttribute("aria-expanded", String(open));
+  // Mobile Menu Toggle
+  var menuBtn = document.getElementById('menuBtn');
+  var siteNav = document.getElementById('siteNav');
+  if (menuBtn && siteNav) {
+    menuBtn.addEventListener('click', function() {
+      var isOpen = siteNav.classList.toggle('is-active');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
-    siteNav.addEventListener("click", function(event) {
-      if (event.target.closest("a")) {
-        siteNav.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
+
+    siteNav.addEventListener('click', function(e) {
+      if (e.target.closest('a')) {
+        siteNav.classList.remove('is-active');
+        menuBtn.setAttribute('aria-expanded', 'false');
       }
     });
   }
+
+  // Staggered Scroll Reveal Animations
+  var revealElements = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealElements.forEach(function(el) {
+    revealObserver.observe(el);
+  });
 </script>
 
 </body>
