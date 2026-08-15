@@ -67,9 +67,10 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(194, 139, 56, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 10%, rgba(34, 77, 54, 0.06) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(182, 90, 56, 0.05) 0px, transparent 50%);
+      url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c28b38' fill-opacity='0.035' fill-rule='evenodd'%3E%3Cpath d='M24 0l4 4h4v4h4v4l4 4v4h-4v4h-4v4h-4l-4 4-4-4h-4v-4h-4v-4h-4v-4l4-4v-4h4v-4h4v-4l4-4zm0 8l-2 2h-2v2h-2v2l-2 2v2h2v2h2v2h2l2 2 2-2h2v-2h2v-2h2v-2l-2-2v-2h-2v-2h-2l-2-2z'/%3E%3C/g%3E%3C/svg%3E"),
+      radial-gradient(at 0% 0%, rgba(194, 139, 56, 0.09) 0px, transparent 50%),
+      radial-gradient(at 100% 10%, rgba(34, 77, 54, 0.07) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(182, 90, 56, 0.06) 0px, transparent 50%);
   }
 
   img { max-width: 100%; height: auto; display: block; }
@@ -81,7 +82,7 @@
     margin: 0 auto;
   }
 
-  /* ────────── TOPBAR & NAVIGATION ────────── */
+  /* ────────── TOPBAR & NAVIGATION (EFECTO SCROLL) ────────── */
   .topbar {
     position: sticky;
     top: 0;
@@ -94,8 +95,8 @@
   }
   
   .topbar.scrolled {
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 32px rgba(22, 51, 35, 0.08);
     border-bottom-color: rgba(30, 27, 24, 0.06);
   }
 
@@ -107,6 +108,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    transition: min-height 0.35s var(--ease-luxury);
+  }
+  .topbar.scrolled .topbar-inner {
+    min-height: 64px;
   }
 
   .brand {
@@ -125,6 +130,11 @@
     box-shadow: 0 4px 14px rgba(30, 27, 24, 0.12);
     border: 2px solid white;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  .topbar.scrolled .brand-logo-wrap {
+    width: 42px;
+    height: 42px;
   }
   .brand-logo-wrap img {
     width: 100%;
@@ -158,17 +168,35 @@
     gap: 8px;
   }
 
+  /* SUBRAYADO ANIMADO EN ENLACES */
   .nav-link {
-    padding: 8px 16px;
+    position: relative;
+    padding: 8px 14px;
     font-size: 0.92rem;
-    font-weight: 600;
+    font-weight: 650;
     color: var(--ink-secondary);
     border-radius: var(--radius-full);
-    transition: all 0.25s ease;
+    transition: color 0.3s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--emerald));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-luxury);
+    border-radius: 2px;
   }
   .nav-link:hover {
     color: var(--emerald-deep);
-    background: rgba(34, 77, 54, 0.06);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .btn-nav-outline {
@@ -184,7 +212,8 @@
   .btn-nav-outline:hover {
     background: var(--emerald-light);
     border-color: var(--emerald);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
   }
 
   .btn-nav-primary {
@@ -200,39 +229,71 @@
     cursor: pointer;
   }
   .btn-nav-primary:hover {
-    box-shadow: 0 8px 24px rgba(22, 51, 35, 0.35);
+    box-shadow: 0 10px 26px rgba(22, 51, 35, 0.38);
     transform: translateY(-2px);
     background: linear-gradient(135deg, #2b5e43, #163323);
   }
 
+  /* BOTÓN HAMBURGUESA TRANSFORMABLE A "X" */
   .menu-toggle {
     display: none;
-    background: var(--emerald-light);
-    border: 1px solid var(--emerald-border);
-    color: var(--emerald-deep);
-    padding: 10px 16px;
-    border-radius: var(--radius-full);
-    font-size: 0.9rem;
-    font-weight: 700;
+    background: transparent;
+    border: 1.5px solid var(--emerald-border);
+    padding: 9px;
+    border-radius: 12px;
     cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    transition: all 0.3s ease;
+  }
+  .menu-toggle:hover {
+    background: var(--emerald-light);
+  }
+  .menu-toggle .bar {
+    width: 22px;
+    height: 2px;
+    background-color: var(--emerald-deep);
+    border-radius: 2px;
+    transition: transform 0.35s var(--ease-luxury), opacity 0.25s ease;
+  }
+  .menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  .menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* ────────── HERO SECTION ────────── */
+  /* ────────── HERO SECTION (FULL WIDTH / IMAGEN COMPLETA) ────────── */
   .hero-section {
-    padding: 24px 0 40px;
+    position: relative;
+    width: 100%;
+    min-height: 84vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--emerald-deep);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   .hero-container {
+    width: 100%;
+    height: 100%;
     position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    min-height: 600px;
-    background-color: var(--emerald-deep);
-    box-shadow: var(--shadow-lg);
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    min-height: 84vh;
+    padding: 90px 0 80px;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .hero-bg-img {
@@ -241,11 +302,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.88) contrast(1.04);
+    object-position: center;
+    filter: brightness(0.85) contrast(1.05);
     transform: scale(1.02);
-    transition: transform 1.2s var(--ease-luxury);
+    transition: transform 1.4s var(--ease-luxury);
   }
-  .hero-container:hover .hero-bg-img {
+  .hero-section:hover .hero-bg-img {
     transform: scale(1.05);
   }
 
@@ -254,17 +316,27 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(20, 38, 28, 0.2) 0%,
-      rgba(15, 30, 22, 0.65) 50%,
+      rgba(20, 38, 28, 0.35) 0%,
+      rgba(15, 30, 22, 0.68) 55%,
       rgba(10, 20, 15, 0.94) 100%
     );
     z-index: 1;
   }
 
+  .hero-inner-wrap {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: clamp(32px, 6vw, 72px);
+    padding: 0;
     color: var(--ink-light);
     max-width: 860px;
   }
@@ -281,7 +353,7 @@
     border-radius: var(--radius-full);
     font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #f7e6ce;
     margin-bottom: 20px;
@@ -338,7 +410,7 @@
   }
   .btn-gold-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 20px 42px rgba(194, 139, 56, 0.42);
+    box-shadow: 0 20px 42px rgba(194, 139, 56, 0.45);
     background: linear-gradient(135deg, #e4ad5c, #d8a04b);
   }
 
@@ -363,7 +435,40 @@
     transform: translateY(-2px);
   }
 
-  /* ────────── STATS & TRUST ────────── */
+  /* INDICADOR DE SCROLL REBOTANTE */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 22px;
+    right: 32px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20, 38, 28, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    color: #f5d49f;
+    font-size: 0.82rem;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    animation: bounceDown 2.4s infinite ease-in-out;
+    transition: all 0.3s ease;
+  }
+  .hero-scroll-indicator:hover {
+    background: rgba(20, 38, 28, 0.85);
+    transform: translateY(-2px);
+    color: #ffffff;
+  }
+  @keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-7px); }
+    60% { transform: translateY(-3px); }
+  }
+
+  /* ────────── STATS & CONTADORES ANIMADOS ────────── */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -378,21 +483,38 @@
     padding: 24px 20px;
     text-align: center;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--emerald));
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   .stat-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-md);
-    border-color: var(--border-medium);
+    border-color: rgba(194, 139, 56, 0.3);
+  }
+  .stat-card:hover::before {
+    opacity: 1;
   }
 
   .stat-number {
     font-family: var(--font-serif);
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: 700;
     color: var(--emerald-deep);
     line-height: 1.1;
     margin-bottom: 4px;
+    min-height: 42px;
   }
   .stat-label {
     font-size: 0.9rem;
@@ -412,13 +534,22 @@
   }
 
   .section-tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: var(--gold-dark);
     font-size: 0.82rem;
     font-weight: 800;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 8px;
+  }
+  .section-tag::before,
+  .section-tag::after {
+    content: "❖";
+    color: var(--gold);
+    font-size: 0.68rem;
+    opacity: 0.75;
   }
 
   .section-heading {
@@ -480,6 +611,10 @@
     border-radius: var(--radius-full);
     font-size: 0.84rem;
     font-weight: 700;
+    transition: transform 0.25s ease;
+  }
+  .about-pill:hover {
+    transform: translateY(-2px);
   }
 
   .about-visual {
@@ -495,7 +630,7 @@
     object-fit: cover;
     transition: transform 0.8s var(--ease-luxury);
   }
-  .about-visual:hover img { transform: scale(1.04); }
+  .about-visual:hover img { transform: scale(1.05); }
 
   .about-visual-badge {
     position: absolute;
@@ -519,31 +654,41 @@
     font-weight: 600;
   }
 
-  /* ────────── SERVICES SECTION ────────── */
+  /* ────────── SERVICES SECTION & HOVER EFFECTS ────────── */
   .category-divider {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin: 40px 0 24px;
+    margin: 42px 0 26px;
   }
   .category-divider::before,
   .category-divider::after {
     content: "";
-    height: 1px;
+    height: 1.5px;
     flex: 1;
-    background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
+    background: linear-gradient(90deg, transparent, rgba(194, 139, 56, 0.35), transparent);
   }
   .category-divider span {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 800;
     color: var(--gold-dark);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: var(--gold-light);
-    border: 1px solid var(--gold-border);
-    padding: 6px 18px;
+    background: #fdfbf7;
+    border: 1.5px solid var(--gold-border);
+    padding: 7px 22px;
     border-radius: var(--radius-full);
+    box-shadow: 0 2px 8px rgba(194, 139, 56, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .category-divider span::before,
+  .category-divider span::after {
+    content: "❖";
+    color: var(--gold);
+    font-size: 0.75rem;
   }
 
   .service-cards-grid {
@@ -554,7 +699,7 @@
 
   .service-card {
     background: var(--bg-surface);
-    border: 1.5px solid rgba(30, 27, 24, 0.08);
+    border: 1.5px solid rgba(30, 27, 24, 0.09);
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 8px 26px -4px rgba(30, 27, 24, 0.06);
@@ -563,10 +708,24 @@
     transition: all 0.4s var(--ease-luxury);
     position: relative;
   }
+  .service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.5px;
+    background: linear-gradient(90deg, var(--gold), #d8a04b, var(--gold));
+    z-index: 5;
+    transition: height 0.3s ease;
+  }
   .service-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 22px 48px -8px rgba(22, 51, 35, 0.16);
-    border-color: rgba(34, 77, 54, 0.28);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 52px -8px rgba(22, 51, 35, 0.2);
+    border-color: rgba(34, 77, 54, 0.35);
+  }
+  .service-card:hover::before {
+    height: 5px;
   }
 
   .service-card.featured {
@@ -590,13 +749,17 @@
     transition: transform 0.8s var(--ease-luxury);
   }
   .service-card:hover .service-img-wrap img {
-    transform: scale(1.07);
+    transform: scale(1.08);
   }
 
   .service-img-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.55) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.6) 100%);
+    transition: background 0.4s ease;
+  }
+  .service-card:hover .service-img-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.68) 100%);
   }
 
   .service-price-pill {
@@ -604,7 +767,7 @@
     top: 14px;
     left: 14px;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(8px);
     color: var(--emerald-deep);
     font-weight: 800;
@@ -674,9 +837,9 @@
     align-items: center;
     gap: 6px;
     background: #ffffff;
-    border: 1px solid rgba(30, 27, 24, 0.1);
+    border: 1px solid rgba(194, 139, 56, 0.2);
     padding: 4px 9px;
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-sm);
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--ink-primary);
@@ -690,7 +853,7 @@
   .stop-num {
     width: 17px;
     height: 17px;
-    border-radius: 50%;
+    border-radius: 4px;
     background: var(--emerald-deep);
     color: white;
     font-size: 0.65rem;
@@ -744,18 +907,33 @@
 
   .hotel-card {
     background: #ffffff;
-    border: 1.5px solid rgba(194, 139, 56, 0.25);
+    border: 1.5px solid rgba(194, 139, 56, 0.28);
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 10px 30px -5px rgba(194, 139, 56, 0.08);
     display: flex;
     flex-direction: column;
     transition: all 0.4s var(--ease-luxury);
+    position: relative;
+  }
+  .hotel-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.5px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--terracotta));
+    z-index: 5;
+    transition: height 0.3s ease;
   }
   .hotel-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 50px -10px rgba(194, 139, 56, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px -10px rgba(194, 139, 56, 0.24);
     border-color: var(--gold);
+  }
+  .hotel-card:hover::before {
+    height: 5px;
   }
 
   .hotel-img-wrap {
@@ -770,7 +948,7 @@
     transition: transform 0.8s var(--ease-luxury);
   }
   .hotel-card:hover .hotel-img-wrap img {
-    transform: scale(1.06);
+    transform: scale(1.08);
   }
 
   .service-disclaimer-pill {
@@ -778,7 +956,7 @@
     bottom: 12px;
     right: 12px;
     z-index: 2;
-    background: rgba(22, 51, 35, 0.85);
+    background: rgba(22, 51, 35, 0.88);
     backdrop-filter: blur(8px);
     color: #ffffff;
     font-size: 0.72rem;
@@ -806,6 +984,11 @@
     border: 1px solid rgba(30, 27, 24, 0.08);
     border-radius: 10px;
     padding: 9px 12px;
+    transition: transform 0.2s ease;
+  }
+  .amenity-item:hover {
+    transform: translateY(-1px);
+    border-color: rgba(194, 139, 56, 0.3);
   }
   .amenity-icon {
     font-size: 1.25rem;
@@ -846,15 +1029,21 @@
     color: #ffffff;
     border-color: var(--whatsapp-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(18, 140, 126, 0.28);
+    box-shadow: 0 6px 18px rgba(18, 140, 126, 0.3);
   }
   .btn-card-action span.wpp-icon {
     display: inline-flex;
     align-items: center;
     gap: 6px;
   }
+  .btn-card-action:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+  .arrow-icon {
+    transition: transform 0.25s ease;
+  }
 
-  /* ────────── FLOATING WHATSAPP BUTTON ────────── */
+  /* ────────── BOTÓN FLOTANTE DE WHATSAPP CON PULSO ────────── */
   .floating-wpp-btn {
     position: fixed;
     bottom: 24px;
@@ -873,10 +1062,17 @@
     transition: all 0.35s var(--ease-luxury);
     border: 2px solid white;
     text-decoration: none;
+    animation: wppPulse 2.4s infinite ease-out;
+  }
+  @keyframes wppPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7), 0 8px 25px rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0), 0 8px 25px rgba(37, 211, 102, 0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 8px 25px rgba(37, 211, 102, 0.4); }
   }
   .floating-wpp-btn:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+    transform: translateY(-4px) scale(1.04);
+    animation: none;
+    box-shadow: 0 14px 32px rgba(37, 211, 102, 0.55);
     background: #20ba5a;
     color: #ffffff;
   }
@@ -889,7 +1085,7 @@
   /* ────────── ITINERARY SHOWCASE ────────── */
   .itinerary-showcase {
     background: linear-gradient(145deg, #ffffff, var(--bg-surface-elevated));
-    border: 1px solid var(--border-medium);
+    border: 1.5px solid var(--border-medium);
     border-radius: var(--radius-lg);
     padding: clamp(28px, 4.5vw, 52px);
     box-shadow: var(--shadow-md);
@@ -897,6 +1093,17 @@
     grid-template-columns: 1.15fr 0.85fr;
     gap: 36px;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .itinerary-showcase::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--emerald), var(--terracotta));
   }
 
   .itinerary-info h3 {
@@ -947,6 +1154,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.8s var(--ease-luxury);
+  }
+  .itinerary-showcase:hover .itinerary-preview-img img {
+    transform: scale(1.06);
   }
 
   /* ────────── WHY US (BENEFITS) ────────── */
@@ -962,13 +1173,29 @@
     border-radius: var(--radius-md);
     padding: 30px 24px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury);
+    transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s;
     text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--emerald), var(--gold));
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   .why-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(34, 77, 54, 0.16);
+    border-color: rgba(34, 77, 54, 0.2);
+  }
+  .why-card:hover::before {
+    opacity: 1;
   }
 
   .why-icon-wrap {
@@ -982,6 +1209,10 @@
     font-size: 1.6rem;
     margin-bottom: 20px;
     border: 1px solid rgba(194, 139, 56, 0.2);
+    transition: transform 0.35s var(--ease-luxury);
+  }
+  .why-card:hover .why-icon-wrap {
+    transform: scale(1.1) rotate(5deg);
   }
 
   .why-card h3 {
@@ -1096,7 +1327,7 @@
     .itinerary-showcase { grid-template-columns: 1fr; gap: 28px; }
     .why-us-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .menu-toggle { display: inline-flex; }
+    .menu-toggle { display: flex; }
     
     .nav-menu {
       display: none;
@@ -1109,28 +1340,33 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-md);
-      padding: 18px;
-      box-shadow: var(--shadow-lg);
+      padding: 20px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       z-index: 101;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s var(--ease-luxury), transform 0.3s var(--ease-luxury);
     }
     .nav-menu.is-active {
       display: flex;
+      opacity: 1;
+      transform: translateY(0);
     }
     .nav-menu .nav-link,
     .nav-menu .btn-nav-outline,
     .nav-menu .btn-nav-primary {
       width: 100%;
       text-align: center;
-      padding: 12px;
+      padding: 13px;
     }
   }
 
   @media (max-width: 640px) {
     .page-container, .topbar-inner { width: calc(100% - 24px); }
     .hero-container { min-height: 520px; }
-    .hero-content { padding: 28px 20px; }
+    .hero-content { padding: 28px 20px 60px; }
     .stats-grid { grid-template-columns: 1fr; gap: 12px; }
     .service-cards-grid { grid-template-columns: 1fr; }
     .hotels-grid { grid-template-columns: 1fr; }
@@ -1138,15 +1374,17 @@
     .why-us-grid { grid-template-columns: 1fr; }
     .hero-actions { flex-direction: column; width: 100%; }
     .hero-actions a { width: 100%; justify-content: center; text-align: center; }
+    .hero-scroll-indicator { display: none; }
     .floating-wpp-btn span { display: none; }
     .floating-wpp-btn { padding: 14px; border-radius: 50%; bottom: 18px; right: 18px; }
   }
 
-  /* Micro-animations */
+  /* SCROLL REVEAL CLASES */
   .reveal {
     opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.7s var(--ease-luxury), transform 0.7s var(--ease-luxury);
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-luxury), transform 0.8s var(--ease-luxury);
+    will-change: opacity, transform;
   }
   .reveal.active {
     opacity: 1;
@@ -1156,7 +1394,7 @@
 </head>
 <body>
 
-<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<!-- BOTÓN FLOTANTE DE WHATSAPP CON ANIMACIÓN DE PULSO -->
 <a class="floating-wpp-btn" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20tours" target="_blank" aria-label="Escribir por WhatsApp a Candia Tours">
   <svg viewBox="0 0 24 24">
     <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.062-2.127-.534-1.637-.681-2.697-2.336-2.778-2.446-.081-.11-.663-.883-.663-1.684 0-.802.417-1.196.565-1.359.149-.163.326-.204.435-.204.108 0 .217.001.312.006.1.005.234-.038.366.28.136.327.464 1.134.505 1.216.041.082.068.177.014.285-.054.109-.082.177-.163.272-.082.096-.172.214-.246.287-.082.081-.168.17-.072.334.095.163.424.7.91 1.134.626.558 1.154.73 1.318.812.163.081.258.07.353-.041.096-.11.408-.476.517-.639.108-.163.217-.136.366-.082.149.054.951.449 1.115.531.163.081.272.122.312.19.041.068.041.395-.103.8zm-3.392-12.416c-5.503 0-9.969 4.466-9.969 9.969 0 1.761.46 3.477 1.334 4.992l-1.42 5.187 5.321-1.396c1.458.795 3.107 1.217 4.734 1.217 5.503 0 9.969-4.466 9.969-9.969s-4.466-10-9.969-10z"/>
@@ -1177,9 +1415,11 @@
       </div>
     </a>
 
-    <button aria-controls="siteNav" aria-expanded="false" class="menu-toggle" id="menuBtn" type="button">
-      <span>Menú</span>
-      <span aria-hidden="true">☰</span>
+    <!-- MENÚ HAMBURGUESA CON 3 LÍNEAS TRANSFORMABLES -->
+    <button aria-controls="siteNav" aria-expanded="false" aria-label="Abrir menú de navegación" class="menu-toggle" id="menuBtn" type="button">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <nav class="nav-menu" id="siteNav">
@@ -1195,53 +1435,61 @@
 
 <main id="inicio">
 
-  <!-- HERO SECTION -->
-  <section class="hero-section page-container">
+  <!-- HERO SECTION (FULL WIDTH) -->
+  <section class="hero-section" id="inicio">
     <div class="hero-container reveal">
       <img alt="Sacsayhuamán, Cusco, Perú" class="hero-bg-img" decoding="async" loading="eager" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sacsayhuam%C3%A1n%2C%20Cusco%2C%20Per%C3%BA%2C%202015-07-31%2C%20DD%2027.JPG?width=1600"/>
       <div class="hero-overlay"></div>
       
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>✨</span> Operador Turístico Local · Cusco, Perú
-        </div>
-        <h1 class="hero-title">
-          Descubre la magia de Cusco <span>a tu propio ritmo.</span>
-        </h1>
-        <p class="hero-desc">
-          Hacemos realidad tu viaje soñado con itinerarios 100% a medida, movilidad privada de primera clase y guías locales expertos para viajeros nacionales e internacionales.
-        </p>
-        <div class="hero-actions">
-          <a class="btn-gold-cta" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20planificar%20mi%20viaje%20a%20Cusco" target="_blank">
-            <span>Contactar al +51 974 783 657</span>
-            <span>→</span>
-          </a>
-          <a class="btn-glass-cta" href="#servicios">
-            <span>Ver Tours & Tarifas</span>
-            <span>↓</span>
-          </a>
+      <div class="hero-inner-wrap">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>❖</span> Operador Turístico Local · Cusco, Perú <span>❖</span>
+          </div>
+          <h1 class="hero-title">
+            Descubre la magia de Cusco <span>a tu propio ritmo.</span>
+          </h1>
+          <p class="hero-desc">
+            Hacemos realidad tu viaje soñado con itinerarios 100% a medida, movilidad privada de primera clase y guías locales expertos para viajeros nacionales e internacionales.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-gold-cta" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20planificar%20mi%20viaje%20a%20Cusco" target="_blank">
+              <span>Contactar al +51 974 783 657</span>
+              <span>→</span>
+            </a>
+            <a class="btn-glass-cta" href="#servicios">
+              <span>Ver Tours & Tarifas</span>
+              <span>↓</span>
+            </a>
+          </div>
         </div>
       </div>
+
+      <!-- INDICADOR DE SCROLL REBOTANTE -->
+      <a class="hero-scroll-indicator" href="#servicios">
+        <span>Descubrir Tours</span>
+        <span>↓</span>
+      </a>
     </div>
   </section>
 
-  <!-- STATS & RESUMEN -->
+  <!-- STATS & CONTADORES ANIMADOS -->
   <section class="page-container">
-    <div class="stats-grid reveal">
+    <div class="stats-grid reveal" id="statsContainer">
       <div class="stat-card">
-        <div class="stat-number">+10</div>
+        <div class="stat-number" data-prefix="+" data-suffix="" data-target="10">+10</div>
         <div class="stat-label">Años de experiencia en Cusco</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">100%</div>
+        <div class="stat-number" data-prefix="" data-suffix="%" data-target="100">100%</div>
         <div class="stat-label">Itinerarios Personalizados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">8+</div>
+        <div class="stat-number" data-prefix="" data-suffix="+" data-target="8">8+</div>
         <div class="stat-label">Circuitos Culturales y de Aventura</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">24/7</div>
+        <div class="stat-number" data-prefix="" data-suffix="/7" data-target="24">24/7</div>
         <div class="stat-label">Atención y Movilidad Privada</div>
       </div>
     </div>
@@ -1285,7 +1533,7 @@
     </div>
 
     <div class="category-divider reveal">
-      <span>— Rutas y Paquetes Principales —</span>
+      <span>Rutas y Paquetes Principales</span>
     </div>
 
     <div class="service-cards-grid">
@@ -1294,6 +1542,7 @@
       <article class="service-card featured reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>$390 USD</span>
             <small>c/u</small>
           </div>
@@ -1330,7 +1579,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20tour%20a%20Machupicchu%20($390%20USD)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1339,6 +1588,7 @@
       <article class="service-card reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 60 Soles</span>
             <small>c/u</small>
           </div>
@@ -1373,7 +1623,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20City%20Tour%20Cusco%20(S/%2060)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1382,6 +1632,7 @@
       <article class="service-card featured reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 150 Soles</span>
             <small>c/u</small>
           </div>
@@ -1417,7 +1668,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20Valle%20Sagrado%20(S/%20150)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1426,6 +1677,7 @@
       <article class="service-card reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 60 Soles</span>
             <small>c/u</small>
           </div>
@@ -1456,7 +1708,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20Maras%20y%20Moray%20(S/%2060)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1465,6 +1717,7 @@
       <article class="service-card reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 60 Soles</span>
             <small>c/u</small>
           </div>
@@ -1495,7 +1748,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20disponibilidad%20para%20el%20Valle%20Sur%20(S/%2060)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1504,6 +1757,7 @@
       <article class="service-card featured reveal">
         <div class="service-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>$95 USD</span>
             <small>c/u</small>
           </div>
@@ -1535,7 +1789,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20el%20tour%20a%20Puno%20($95%20USD)" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1544,7 +1798,7 @@
 
     <!-- AVENTURA Y NATURALEZA -->
     <div class="category-divider reveal" style="margin-top: 48px;">
-      <span>— Circuitos de Aventura y Naturaleza —</span>
+      <span>Circuitos de Aventura y Naturaleza</span>
     </div>
 
     <div class="service-cards-grid">
@@ -1583,7 +1837,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Monta%C3%B1a%207%20Colores" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1622,7 +1876,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Laguna%20Humantay" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1661,7 +1915,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20consultar%20sobre%20Ruta%20de%20Lares" target="_blank">
             <span class="wpp-icon">💬 Consultar por WhatsApp</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1685,6 +1939,7 @@
       <article class="hotel-card reveal">
         <div class="hotel-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 200 Soles</span>
             <small>/ noche</small>
           </div>
@@ -1736,7 +1991,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20reservar%20Hotel%20en%20Machupicchu%20(S/%20200)" target="_blank">
             <span class="wpp-icon">💬 Reservar por WhatsApp (+51 974 783 657)</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1745,6 +2000,7 @@
       <article class="hotel-card reveal">
         <div class="hotel-img-wrap">
           <div class="service-price-pill">
+            <small>Desde</small>
             <span>S/ 250 Soles</span>
             <small>/ noche</small>
           </div>
@@ -1796,7 +2052,7 @@
 
           <a class="btn-card-action" href="https://wa.me/51974783657?text=Hola%20Candia%20Tours,%20deseo%20reservar%20Hotel%20en%20Cusco%20(S/%20250)" target="_blank">
             <span class="wpp-icon">💬 Reservar por WhatsApp (+51 974 783 657)</span>
-            <span>→</span>
+            <span class="arrow-icon">→</span>
           </a>
         </div>
       </article>
@@ -1916,7 +2172,7 @@
 </footer>
 
 <script>
-  // Sticky Topbar Shadow on Scroll
+  // 1. Efecto de Scroll en el Header
   var topbar = document.getElementById('siteHeader');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 20) {
@@ -1926,24 +2182,26 @@
     }
   }, { passive: true });
 
-  // Mobile Menu Toggle
+  // 2. Animación del Menú Hamburguesa a "X" (Móvil)
   var menuBtn = document.getElementById('menuBtn');
   var siteNav = document.getElementById('siteNav');
   if (menuBtn && siteNav) {
     menuBtn.addEventListener('click', function() {
       var isOpen = siteNav.classList.toggle('is-active');
+      menuBtn.classList.toggle('is-active', isOpen);
       menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
     siteNav.addEventListener('click', function(e) {
       if (e.target.closest('a')) {
         siteNav.classList.remove('is-active');
+        menuBtn.classList.remove('is-active');
         menuBtn.setAttribute('aria-expanded', 'false');
       }
     });
   }
 
-  // Staggered Scroll Reveal Animations
+  // 3. Scroll Reveal (Aparición fluida con Intersection Observer)
   var revealElements = document.querySelectorAll('.reveal');
   var revealObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
@@ -1960,6 +2218,54 @@
   revealElements.forEach(function(el) {
     revealObserver.observe(el);
   });
+
+  // 4. Contadores Numéricos Animados
+  var counters = document.querySelectorAll('.stat-number');
+  var countersAnimated = false;
+  var statsSection = document.getElementById('statsContainer');
+
+  function animateCounters() {
+    if (countersAnimated) return;
+    countersAnimated = true;
+
+    counters.forEach(function(counter) {
+      var target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+      var prefix = counter.getAttribute('data-prefix') || '';
+      var suffix = counter.getAttribute('data-suffix') || '';
+      var duration = 1800; // ms
+      var startTime = null;
+
+      function updateNumber(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Ease-out cubic curve
+        var easeProgress = 1 - Math.pow(1 - progress, 3);
+        var current = Math.floor(easeProgress * target);
+        counter.textContent = prefix + current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateNumber);
+        } else {
+          counter.textContent = prefix + target + suffix;
+        }
+      }
+
+      requestAnimationFrame(updateNumber);
+    });
+  }
+
+  if (statsSection) {
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    statsObserver.observe(statsSection);
+  }
 </script>
 
 </body>
